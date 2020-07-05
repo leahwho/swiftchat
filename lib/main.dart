@@ -10,8 +10,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('SwiftChat'),
-          backgroundColor: Colors.deepPurple,
+          // title: Text('SwiftChat'),
+          backgroundColor: Colors.purple[900],
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Image(
+            image: AssetImage( 
+              'images/DeepPurpleCircleLogo.png',
+            ),
+          ),
         ),
       ),
     );
