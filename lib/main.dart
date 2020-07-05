@@ -13,12 +13,20 @@ class MyApp extends StatelessWidget {
           // title: Text('SwiftChat'),
           backgroundColor: Colors.purple[900],
         ),
-        body: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Image(
-            image: AssetImage( 
-              'images/DeepPurpleCircleLogo.png',
-            ),
+        body: Container(
+          child: Column(
+            children: <Widget>[
+              Image(
+                image: AssetImage(
+                  'images/DeepPurpleCircleLogo.png',
+                ),
+              ),
+              const SizedBox(height: 30),
+              RaisedButton(
+                onPressed: () {},
+                child: const Text('New Board', style: TextStyle(fontSize: 20)),
+              ),
+            ],
           ),
         ),
       ),
