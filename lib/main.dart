@@ -16,15 +16,53 @@ class MyApp extends StatelessWidget {
         body: Container(
           child: Column(
             children: <Widget>[
+              const SizedBox(height: 100),
               Image(
                 image: AssetImage(
                   'images/DeepPurpleCircleLogo.png',
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 100), // invisible
               RaisedButton(
-                onPressed: () {},
-                child: const Text('New Board', style: TextStyle(fontSize: 20)),
+                onPressed: () {}, // TODO: Add function!
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text('Quick Board', style: TextStyle(fontSize: 25)),
+                ),
+                color: Colors.purple[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12.0),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              RaisedButton(
+                onPressed: () {}, // TODO: Add function!
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text('Login', style: TextStyle(fontSize: 25)),
+                ),
+                color: Colors.purple[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12.0),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              RaisedButton(
+                onPressed: () {}, // TODO: Add function!
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text('Register', style: TextStyle(fontSize: 25)),
+                ),
+                color: Colors.purple[200],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12.0),
+                  ),
+                ),
               ),
             ],
           ),
