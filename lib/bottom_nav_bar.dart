@@ -15,16 +15,6 @@ class BottomNavBar extends StatelessWidget {
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.home),
-            onPressed: () {
-              Navigator.pushNamed(context, '/');
-            },
-          ),
-          IconButton(
-            icon: Icon(CupertinoIcons.photo_camera_solid),
-            onPressed: () {},
-          ),
-          IconButton(
             icon: Icon(Icons.account_circle),
             onPressed: () {},
           ),
