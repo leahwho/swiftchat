@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'board_button.dart';
 
 class QuickBoard extends StatelessWidget {
   @override
@@ -13,57 +14,8 @@ class QuickBoard extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 10.0,
-                vertical: 5.0,
-              ),
-              color: Colors.grey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Center(
-                    child: Text(
-                      'TAP TO ADD IMAGE',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          // SizedBox(
-          //   height: 10.0,
-          // ),
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 10.0,
-                vertical: 5.0,
-              ),
-              color: Colors.grey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Center(
-                    child: Text(
-                      'TAP TO ADD IMAGE',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          BoardButton(),
+          BoardButton(),
         ],
       ),
     );
