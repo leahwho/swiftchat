@@ -9,25 +9,54 @@ class _BoardButtonState extends State<BoardButton> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        margin: EdgeInsets.all(10.0),
-        color: Colors.grey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Center(
-              child: Text(
-                'TAP TO ADD IMAGE',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.black,
+      child: GestureDetector(
+        onTap: () {
+          print('Button pressed!');
+          // when this button is pressed, open a search drawer that is a grid view
+        },
+        child: Container(
+          // outer container
+          width: double.infinity,
+          margin: EdgeInsets.all(10.0),
+          color: Colors.grey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.all(10.0),
+                  color: Colors.grey.shade100,
+                  child: Center(
+                    child: Text(
+                      'TAP TO ADD IMAGE',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
-            Text(
-                'Replace this text with what you want this button to say'),
-          ],
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    print('edit text button tapped!');
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Text(
+                      'EDITABLE TEXT HERE',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
