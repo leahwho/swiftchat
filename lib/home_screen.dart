@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'bottom_nav_bar.dart';
+import 'app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO: make an appbar widget class
-      appBar: AppBar(
-        title: Text('SwiftChat'),
-        backgroundColor: Colors.grey,
-      ),
+      appBar: SwiftAppBar('SwiftChat'),
       bottomNavigationBar: BottomNavBar(),
       body: Container(
         child: Column(
@@ -27,6 +24,8 @@ class HomeScreen extends StatelessWidget {
             // TODO: Make a homeScreenButton widget class
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+              // TODO: Refactor to use raised button in bottom nav bar
+              // like here: https://proandroiddev.com/flutter-how-to-using-bottomappbar-75d53426f5af
               child: RaisedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/quickboard');
