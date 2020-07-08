@@ -6,6 +6,13 @@ class BoardButton extends StatefulWidget {
 }
 
 class _BoardButtonState extends State<BoardButton> {
+  // state to keep track of:
+  // display Text vs display Photo
+  // use a ternary for the container's child?  if there is imageState, display image, otherwise display text
+
+  String buttonText = 'EDITABLE TEXT HERE';
+  // this should eventually display ONLY if the user has entered a search term and should be the search term itself
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -15,13 +22,12 @@ class _BoardButtonState extends State<BoardButton> {
           // when this button is pressed, open a search drawer that is a grid view
         },
         child: Container(
-          // outer container
           width: double.infinity,
           margin: EdgeInsets.all(10.0),
           color: Colors.grey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Expanded(
                 child: Container(
@@ -38,19 +44,19 @@ class _BoardButtonState extends State<BoardButton> {
                   ),
                 ),
               ),
-              Center(
-                child: GestureDetector(
-                  onTap: () {
-                    print('edit text button tapped!');
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Text(
-                      'EDITABLE TEXT HERE',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.black,
-                      ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.edit,
+                      color: Colors.black,
+                    ),
+                    border: InputBorder.none,
+                    hintText: buttonText,
+                    hintStyle: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.black,
                     ),
                   ),
                 ),
