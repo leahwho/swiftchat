@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flappy_search_bar/flappy_search_bar.dart';
 
 class BoardButton extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _BoardButtonState extends State<BoardButton> {
       child: GestureDetector(
         onTap: () {
           print('Button pressed!');
-          // when this button is pressed, open a search drawer that is a grid view
+          // onTap, render a search bar popup
         },
         child: Container(
           width: double.infinity,
