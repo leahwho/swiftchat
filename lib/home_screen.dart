@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'bottom_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //TODO: make an appbar widget class
       appBar: AppBar(
-        // title: Text('SwiftChat'),
-        backgroundColor: Colors.white,
+        title: Text('SwiftChat'),
+        backgroundColor: Colors.grey,
       ),
+      bottomNavigationBar: BottomNavBar(),
       body: Container(
         child: Column(
           children: <Widget>[
@@ -21,6 +24,7 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 50), // invisible
 
+            // TODO: Make a homeScreenButton widget class
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
               child: RaisedButton(
@@ -52,8 +56,9 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
               child: RaisedButton(
-                onPressed:
-                    () {}, // TODO: Add function! --> this button should go to the 'login' route
+                onPressed: () {
+                  print('login button pressed!');
+                },
                 child: ListTile(
                   leading: Icon(
                     Icons.account_circle,
@@ -79,8 +84,9 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
               child: RaisedButton(
-                onPressed:
-                    () {}, // TODO: Add function! --> this button should go to the 'resgister' route
+                onPressed: () {
+                  print('register button pressed!');
+                }, // TODO: Add function! --> this button should go to the 'resgister' route
                 child: ListTile(
                   leading: Icon(
                     Icons.check_circle,
