@@ -1,5 +1,5 @@
 name: swift_chat
-description: A new Flutter project.
+description: A capstone project for Ada Developers Academy where users can make quick and simple visual communication boards.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -24,10 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
+  flappy_search_bar: ^1.7.2
 
 dev_dependencies:
   flutter_test:
