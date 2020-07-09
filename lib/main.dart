@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swift_chat/search.dart';
 import 'quick_board.dart';
 import 'home_screen.dart';
 
@@ -14,6 +15,7 @@ class SwiftChat extends StatelessWidget {
       routes: {
         '/': (context) => HomeScreen(),
         '/quickboard': (context) => QuickBoard(),
+        '/search': (context) => SwiftSearch(),
       },
     );
   }
