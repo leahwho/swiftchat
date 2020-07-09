@@ -20,7 +20,7 @@ class _BoardButtonState extends State<BoardButton> {
       child: GestureDetector(
         onTap: () {
           print('Button pressed!');
-          // onTap, render a search bar popup
+          Navigator.pushNamed(context, '/search');
         },
         child: Container(
           width: double.infinity,
