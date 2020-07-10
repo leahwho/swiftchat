@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flappy_search_bar/flappy_search_bar.dart';
-import 'package:swift_chat/result.dart';
+
 
 class BoardButton extends StatefulWidget {
   @override
@@ -10,8 +9,21 @@ class BoardButton extends StatefulWidget {
 class _BoardButtonState extends State<BoardButton> {
   String imgUrl;
   String userQuery;
+  bool displayToggle = false;
 
   String buttonText = 'EDITABLE TEXT HERE';
+
+  void updateCard(dynamic searchResults) {
+    if (searchResults == null) {
+      print('the results are NULL, idiot');
+    } else {
+      imgUrl = searchResults['imgUrl'];
+      userQuery = searchResults['userQuery'];
+      setState(() {
+        displayToggle = true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +31,15 @@ class _BoardButtonState extends State<BoardButton> {
       child: GestureDetector(
         onTap: () async {
           print('Button pressed!');
-          Result searchResults = await Navigator.pushNamed(context, '/search');
-          // print(searchResults.imgUrl);
-          userQuery = searchResults.userQuery;
-          imgUrl = searchResults.imgUrl;
+          var searchResults = await Navigator.pushNamed(context, '/search');
+          // use a function to pass searchResults and then update the query and imgUrl
+          // print(searchResults);
+          updateCard(searchResults);
         },
+        // onPressed: () async {
+        //               var weatherData = await weather.getLocationWeather();
+        //               updateUI(weatherData);
+        //             },
         child: Container(
           width: double.infinity,
           margin: EdgeInsets.all(10.0),
@@ -37,13 +53,15 @@ class _BoardButtonState extends State<BoardButton> {
                   margin: EdgeInsets.all(10.0),
                   color: Colors.grey.shade100,
                   child: Center(
-                    child: Text(
-                      'TAP TO ADD IMAGE',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.black,
-                      ),
-                    ),
+                    child: displayToggle
+                        ? Image.network(imgUrl)
+                        : Text(
+                            'TAP TO ADD IMAGE',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.black,
+                            ),
+                          ),
                   ),
                 ),
               ),
