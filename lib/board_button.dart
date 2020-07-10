@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flappy_search_bar/flappy_search_bar.dart';
+import 'package:swift_chat/result.dart';
 
 class BoardButton extends StatefulWidget {
   @override
@@ -7,20 +8,21 @@ class BoardButton extends StatefulWidget {
 }
 
 class _BoardButtonState extends State<BoardButton> {
-  // state to keep track of:
-  // display Text vs display Photo
-  // use a ternary for the container's child?  if there is imageState, display image, otherwise display text
+  String imgUrl;
+  String userQuery;
 
   String buttonText = 'EDITABLE TEXT HERE';
-  // this should eventually display ONLY if the user has entered a search term and should be the search term itself
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: GestureDetector(
-        onTap: () {
+        onTap: () async {
           print('Button pressed!');
-          Navigator.pushNamed(context, '/search');
+          Result searchResults = await Navigator.pushNamed(context, '/search');
+          // print(searchResults.imgUrl);
+          userQuery = searchResults.userQuery;
+          imgUrl = searchResults.imgUrl;
         },
         child: Container(
           width: double.infinity,
@@ -54,7 +56,7 @@ class _BoardButtonState extends State<BoardButton> {
                       color: Colors.black,
                     ),
                     border: InputBorder.none,
-                    hintText: buttonText,
+                    hintText: userQuery ?? buttonText,
                     hintStyle: TextStyle(
                       fontSize: 20.0,
                       color: Colors.black,
