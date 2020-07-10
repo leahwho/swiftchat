@@ -74,7 +74,10 @@ class _SwiftSearchState extends State<SwiftSearch> {
                           onTap: () {
                             Navigator.pop(
                               context,
-                              Result('${data['value'][index]['thumbnailUrl']}', userQuery),
+                              {
+                                'userQuery': userQuery,
+                                'imgUrl': '${data['value'][index]['thumbnailUrl']}'
+                              },
                             );
                           },
                           child: Card(
