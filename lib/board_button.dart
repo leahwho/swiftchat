@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class BoardButton extends StatefulWidget {
   @override
   _BoardButtonState createState() => _BoardButtonState();
@@ -32,14 +31,8 @@ class _BoardButtonState extends State<BoardButton> {
         onTap: () async {
           print('Button pressed!');
           var searchResults = await Navigator.pushNamed(context, '/search');
-          // use a function to pass searchResults and then update the query and imgUrl
-          // print(searchResults);
           updateCard(searchResults);
         },
-        // onPressed: () async {
-        //               var weatherData = await weather.getLocationWeather();
-        //               updateUI(weatherData);
-        //             },
         child: Container(
           width: double.infinity,
           margin: EdgeInsets.all(10.0),
@@ -67,20 +60,20 @@ class _BoardButtonState extends State<BoardButton> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
-                child: TextField(
+                child: displayToggle ? TextField(
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.edit,
                       color: Colors.black,
                     ),
                     border: InputBorder.none,
-                    hintText: userQuery ?? buttonText,
+                    hintText: userQuery,
                     hintStyle: TextStyle(
                       fontSize: 20.0,
                       color: Colors.black,
                     ),
                   ),
-                ),
+                ) : Container(),
               ),
             ],
           ),
