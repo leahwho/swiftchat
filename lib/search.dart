@@ -22,9 +22,8 @@ class _SwiftSearchState extends State<SwiftSearch> {
     String url =
         'https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=$userQuery&count=30';
 
-    http.Response response = await http.get(url, headers: {
-      'Ocp-Apim-Subscription-Key': '$azureKey'
-    });
+    http.Response response = await http
+        .get(url, headers: {'Ocp-Apim-Subscription-Key': '$azureKey'});
 
     this.setState(() {
       data = json.decode(response.body);
@@ -37,7 +36,7 @@ class _SwiftSearchState extends State<SwiftSearch> {
       appBar: SwiftAppBar('Search'),
       bottomNavigationBar: BottomNavBar(),
       body: Container(
-        child: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Padding(
@@ -65,20 +64,21 @@ class _SwiftSearchState extends State<SwiftSearch> {
               ),
               displayImages
                   ? GridView.builder(
-                    itemCount: data == null ? 0 : data.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {},
-                        child: Card(
-                          child: Image.network(
-                              '${data['value'][index]['thumbnailUrl']}'),
-                        ),
-                      );
-                    },
-                    shrinkWrap: true,
-                  )
+                      itemCount: data == null ? 0 : data.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2),
+                      physics: ScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Card(
+                            child: Image.network(
+                                '${data['value'][index]['thumbnailUrl']}'),
+                          ),
+                        );
+                      },
+                      shrinkWrap: true,
+                    )
                   : Container(),
             ],
           ),
@@ -87,4 +87,3 @@ class _SwiftSearchState extends State<SwiftSearch> {
     );
   }
 }
-
