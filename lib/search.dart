@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'app_bar.dart';
 import 'bottom_nav_bar.dart';
 import 'src.dart';
-import 'result.dart';
 
 class SwiftSearch extends StatefulWidget {
   @override
@@ -14,8 +13,8 @@ class SwiftSearch extends StatefulWidget {
 }
 
 class _SwiftSearchState extends State<SwiftSearch> {
-  String userQuery;
   Map data;
+  String userQuery;
   String imageAddress;
   bool displayImages = false;
 
