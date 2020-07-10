@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'app_bar.dart';
 import 'bottom_nav_bar.dart';
 import 'src.dart';
+import 'result.dart';
 
 class SwiftSearch extends StatefulWidget {
   @override
@@ -70,7 +71,12 @@ class _SwiftSearchState extends State<SwiftSearch> {
                       physics: ScrollPhysics(),
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pop(
+                              context,
+                              Result('${data['value'][index]['thumbnailUrl']}', userQuery),
+                            );
+                          },
                           child: Card(
                             child: Image.network(
                                 '${data['value'][index]['thumbnailUrl']}'),
