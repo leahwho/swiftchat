@@ -18,36 +18,13 @@ class _SwiftSearchState extends State<SwiftSearch> {
   String imageAddress;
   bool displayImages = false;
 
-  Future<void> getResults(userQuery) async {
-    String imgThumbnail;
-
-    try {
-      http.Response response = await http.get(
-          'https://www.googleapis.com/customsearch/v1?key=$apiKey&cx=$cseId=$userQuery');
-
-      if (response.statusCode == 200) {
-        var data = response.body;
-        imgThumbnail = (jsonDecode(data)['items'][0]['pagemap']['cse_thumbnail']
-            [0]['src']);
-        print(imgThumbnail);
-        setState(() {
-          displayImages = true;
-        });
-      } else {
-        print(response.statusCode);
-      }
-    } catch (error) {
-      print(error);
-    }
-
-    imageAddress = imgThumbnail;
-  }
-
   Future<void> getSearchResults(userQuery) async {
     String url =
-        'https://www.googleapis.com/customsearch/v1?key=$apiKey&cx=$cseId=$userQuery';
+        'https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=$userQuery&count=30';
 
-    http.Response response = await http.get(url);
+    http.Response response = await http.get(url, headers: {
+      'Ocp-Apim-Subscription-Key': '$azureKey'
+    });
 
     this.setState(() {
       data = json.decode(response.body);
@@ -74,7 +51,9 @@ class _SwiftSearchState extends State<SwiftSearch> {
                   ),
                   onSubmitted: (query) {
                     getSearchResults(query);
-                    //getResults(query);
+                    setState(() {
+                      displayImages = true;
+                    });
                   },
                   onChanged: (query) {
                     setState(() {
@@ -84,34 +63,23 @@ class _SwiftSearchState extends State<SwiftSearch> {
                   },
                 ),
               ),
-              Container(
-                child: GridView.builder(
-                  itemCount: data == null ? 0 : data.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {},
-                      child: Card(
-                          child: Image.network(
-                              '${data['items'][index]['pagemap']['cse_thumbnail'][0]['src']}')),
-                    );
-                  },
-                  shrinkWrap: true,
-                ),
-              ),
-              // FutureBuilder(
-              //   future: getSearchResults(query),
-              //   builder: (context, snapShot) {
-              //   if (snapShot.hasError) {
-              //     return Text('Error! Ack! No images for you!');
-              //   } else if (snapShot.hasData) {
-              //     return Text('YOU HAVE DATA!');
-              //   }
-              // }),
               displayImages
-                  ? Card(child: Image.network(imageAddress))
-                  : Container()
+                  ? GridView.builder(
+                    itemCount: data == null ? 0 : data.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2),
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {},
+                        child: Card(
+                          child: Image.network(
+                              '${data['value'][index]['thumbnailUrl']}'),
+                        ),
+                      );
+                    },
+                    shrinkWrap: true,
+                  )
+                  : Container(),
             ],
           ),
         ),
@@ -120,36 +88,3 @@ class _SwiftSearchState extends State<SwiftSearch> {
   }
 }
 
-// return GridView.builder(
-//                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                           crossAxisCount: 3),
-
-//                       itemBuilder: (BuildContext context, int index) {
-//                         return Container();
-//                       });
-
-// FutureBuilder(
-//                 future: getSearchResults(),
-//                 builder: (context, snapShot) {
-//                   Map data = snapShot.data;
-//                   if(snapShot.hasError) {
-//                     print(snapShot.error);
-//                     return Text('Failed to get response with this error: ${snapShot.error}')
-//                   } else if (snapShot.hasData) {
-//                     return new Center(
-//                       child: GridView.count(
-//                         crossAxisCount: 3,
-//                         children: List.generate(30, (index) {
-//                           return Center(
-//                             child: Image.network('${data['items'][index]['pagemap']['cse_thumbnail']
-//                               [0]['src']}'),
-//                             );
-//                           }
-//                         ),
-//                         )
-//                     );
-//                   } else if (!snapShot.hasData){
-//                     return Center(child: CircularProgressIndicator());
-//                   }
-//                 }
-//                 ),
