@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'bottom_nav_bar.dart';
 import 'app_bar.dart';
 
@@ -9,6 +10,12 @@ class HomeScreen extends StatelessWidget {
       appBar: SwiftAppBar('SwiftChat'),
       bottomNavigationBar: BottomNavBar(),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/background.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           children: <Widget>[
             const SizedBox(height: 100),
