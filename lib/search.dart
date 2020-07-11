@@ -27,12 +27,15 @@ class _SwiftSearchState extends State<SwiftSearch> {
 
     this.setState(() {
       data = json.decode(response.body);
+      print(data.length);
+      // TODO: why is data.length only 12 when the count is 30?
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: SwiftAppBar('Search'),
       bottomNavigationBar: BottomNavBar(),
       body: Container(
@@ -42,13 +45,36 @@ class _SwiftSearchState extends State<SwiftSearch> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: TextField(
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                  ),
                   autofocus: true,
                   textInputAction: TextInputAction.search,
                   decoration: InputDecoration(
+                    border: InputBorder.none,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                      ),
+                    ),
                     prefixIcon: Icon(
                       Icons.search,
+                      color: Colors.white,
                     ),
                     hintText: 'Enter Search Query',
+                    
+                    hintStyle: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                    ),
                   ),
                   onSubmitted: (query) {
                     getSearchResults(query);
