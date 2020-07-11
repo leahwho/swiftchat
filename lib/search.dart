@@ -42,6 +42,8 @@ class _SwiftSearchState extends State<SwiftSearch> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: TextField(
+                  autofocus: true,
+                  textInputAction: TextInputAction.search,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.search,
@@ -69,17 +71,18 @@ class _SwiftSearchState extends State<SwiftSearch> {
                           crossAxisCount: 2),
                       physics: ScrollPhysics(),
                       itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.pop(
-                              context,
-                              {
-                                'userQuery': userQuery,
-                                'imgUrl': '${data['value'][index]['thumbnailUrl']}'
-                              },
-                            );
-                          },
-                          child: Card(
+                        return Card(
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pop(
+                                context,
+                                {
+                                  'userQuery': userQuery,
+                                  'imgUrl':
+                                      '${data['value'][index]['thumbnailUrl']}'
+                                },
+                              );
+                            },
                             child: Image.network(
                                 '${data['value'][index]['thumbnailUrl']}'),
                           ),
