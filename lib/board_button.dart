@@ -10,11 +10,9 @@ class _BoardButtonState extends State<BoardButton> {
   String userQuery;
   bool displayToggle = false;
 
-  String buttonText = 'EDITABLE TEXT HERE';
-
   void updateCard(dynamic searchResults) {
     if (searchResults == null) {
-      print('the results are NULL, idiot');
+      print('your search results are null! ugh!');
     } else {
       imgUrl = searchResults['imgUrl'];
       userQuery = searchResults['userQuery'];
@@ -36,45 +34,56 @@ class _BoardButtonState extends State<BoardButton> {
         child: Container(
           width: double.infinity,
           margin: EdgeInsets.all(10.0),
-          color: Colors.grey,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5.0),
+            color: Colors.grey.shade300,
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                child: Container(
-                  margin: EdgeInsets.all(10.0),
-                  color: Colors.grey.shade100,
-                  child: Center(
-                    child: displayToggle
-                        ? Image.network(imgUrl)
-                        : Text(
-                            'TAP TO ADD IMAGE',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.black,
+                child: Center(
+                  child: Container(
+                    margin: EdgeInsets.all(10.0),
+                    color: Colors.grey.shade300,
+                    child: Center(
+                      child: displayToggle
+                          ? Image.network(imgUrl)
+                          : Text(
+                              'TAP TO SEARCH',
+                              style: TextStyle(
+                                fontSize: 30.0,
+                                color: Colors.black,
+                              ),
                             ),
-                          ),
+                    ),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: displayToggle ? TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.edit,
-                      color: Colors.black,
-                    ),
-                    border: InputBorder.none,
-                    hintText: userQuery,
-                    hintStyle: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.black,
-                    ),
-                  ),
-                ) : Container(),
-              ),
+              displayToggle
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: TextField(
+                        style: TextStyle(
+                          fontSize: 30.0,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.edit,
+                            color: Colors.black,
+                            size: 20.0,
+                          ),
+                          border: InputBorder.none,
+                          hintText: userQuery,
+                          hintStyle: TextStyle(
+                            fontSize: 30.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
             ],
           ),
         ),
