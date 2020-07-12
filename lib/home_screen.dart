@@ -40,11 +40,21 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 100), // invisible
+            SizedBox(height: 30), // invisible
             HomeButton(
               'QuickBoard',
               'quickboard',
               Icons.add_circle,
+            ),
+            HomeButton(
+              'ThreeBoard',
+              'threeboard',
+              Icons.save,
+            ),
+            HomeButton(
+              'FourBoard',
+              'fourboard',
+              Icons.four_k,
             ),
             HomeButton(
               'Saved Boards',
