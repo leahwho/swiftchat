@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:swift_chat/home_button.dart';
+import 'home_button.dart';
+
+// TODO: Do you need these?
 import 'bottom_nav_bar.dart';
 import 'app_bar.dart';
 
@@ -7,112 +11,45 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SwiftAppBar('SwiftChat'),
-      bottomNavigationBar: BottomNavBar(),
+      // appBar: SwiftAppBar('SwiftChat'),
+      // bottomNavigationBar: BottomNavBar(),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/background.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
+        color: Color(0xFF293241),
         child: Column(
           children: <Widget>[
-            const SizedBox(height: 100),
-
-            Image(
-              image: AssetImage(
-                'images/DeepPurpleCircleLogo.png',
+            const SizedBox(height: 120),
+            Text(
+              'SwiftChat',
+              style: TextStyle(
+                fontFamily: 'FasterOne',
+                color: Color(0xFFe8eddf),
+                fontSize: 55.0,
+              ),
+            ),
+            const SizedBox(height: 50),
+            Container(
+              height: 300.0,
+              child: Stack(
+                children: <Widget>[
+                  Image(
+                    image: AssetImage(
+                      'images/bird.png',
+                    ),
+                  ),
+                ],
               ),
             ),
 
-            const SizedBox(height: 50), // invisible
-
-            // TODO: Make a homeScreenButton widget class
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
-              // TODO: Refactor to use raised button in bottom nav bar
-              // like here: https://proandroiddev.com/flutter-how-to-using-bottomappbar-75d53426f5af
-              child: RaisedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/quickboard');
-                },
-                child: ListTile(
-                  leading: Icon(
-                    Icons.add_circle,
-                    color: Colors.white,
-                  ),
-                  title: Text(
-                    'Quick Board',
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                color: Colors.deepPurple,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12.0),
-                  ),
-                ),
-              ),
+            SizedBox(height: 100), // invisible
+            HomeButton(
+              'QuickBoard',
+              'quickboard',
+              Icons.add_circle,
             ),
-
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
-              child: RaisedButton(
-                onPressed: () {
-                  print('login button pressed!');
-                },
-                child: ListTile(
-                  leading: Icon(
-                    Icons.account_circle,
-                    color: Colors.white,
-                  ),
-                  title: Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                color: Colors.deepPurple,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12.0),
-                  ),
-                ),
-              ),
-            ),
-
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
-              child: RaisedButton(
-                onPressed: () {
-                  print('register button pressed!');
-                }, // TODO: Add function! --> this button should go to the 'resgister' route
-                child: ListTile(
-                  leading: Icon(
-                    Icons.check_circle,
-                    color: Colors.white,
-                  ),
-                  title: Text(
-                    'Register',
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                color: Colors.deepPurple,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12.0),
-                  ),
-                ),
-              ),
+            HomeButton(
+              'Saved Boards',
+              'saved',
+              Icons.save,
             ),
           ],
         ),
