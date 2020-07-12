@@ -9,6 +9,7 @@ class _BoardButtonState extends State<BoardButton> {
   String imgUrl;
   String userQuery;
   bool displayToggle = false;
+  // bool editable = true;
 
   void updateCard(dynamic searchResults) {
     if (searchResults == null) {
@@ -18,6 +19,7 @@ class _BoardButtonState extends State<BoardButton> {
       userQuery = searchResults['userQuery'];
       setState(() {
         displayToggle = true;
+        // editable = false;
       });
     }
   }
@@ -26,17 +28,21 @@ class _BoardButtonState extends State<BoardButton> {
   Widget build(BuildContext context) {
     return Expanded(
       child: GestureDetector(
-        onTap: () async {
+        // TODO: Do an onTap and onLongPress?
+        onLongPress: () async {
           print('Button pressed!');
           var searchResults = await Navigator.pushNamed(context, '/search');
           updateCard(searchResults);
+        },
+        onTap: () {
+          Navigator.pushNamed(context, '/choice_screen');
         },
         child: Container(
           width: double.infinity,
           margin: EdgeInsets.all(10.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.0),
-            color: Colors.grey.shade300,
+            color: Color(0xFFCfDBD5),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -46,16 +52,49 @@ class _BoardButtonState extends State<BoardButton> {
                 child: Center(
                   child: Container(
                     margin: EdgeInsets.all(10.0),
-                    color: Colors.grey.shade300,
+                    color: Color(0xFFCfDBD5),
                     child: Center(
                       child: displayToggle
                           ? Image.network(imgUrl)
-                          : Text(
-                              'TAP TO SEARCH',
-                              style: TextStyle(
-                                fontSize: 30.0,
-                                color: Colors.black,
-                              ),
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.touch_app,
+                                      size: 30.0,
+                                    ),
+                                    SizedBox(width: 10.0),
+                                    Text(
+                                      'LONGPRESS TO SEARCH',
+                                      style: TextStyle(
+                                        fontSize: 27.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30.0,
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.tap_and_play,
+                                      size: 30.0,
+                                    ),
+                                    SizedBox(width: 10.0),
+                                    Text(
+                                      'TAP TO SPEAK',
+                                      style: TextStyle(
+                                        fontSize: 27.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
                             ),
                     ),
                   ),
