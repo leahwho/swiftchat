@@ -27,15 +27,13 @@ class _SwiftSearchState extends State<SwiftSearch> {
 
     this.setState(() {
       data = json.decode(response.body);
-      print(data.length);
-      // TODO: why is data.length only 12 when the count is 30?
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF293241),
       appBar: SwiftAppBar('Search'),
       bottomNavigationBar: BottomNavBar(),
       body: Container(
@@ -92,7 +90,7 @@ class _SwiftSearchState extends State<SwiftSearch> {
               ),
               displayImages
                   ? GridView.builder(
-                      itemCount: data == null ? 0 : data.length,
+                      itemCount: data == null ? 0 : 30,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2),
                       physics: ScrollPhysics(),

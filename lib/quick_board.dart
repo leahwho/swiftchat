@@ -7,7 +7,7 @@ class QuickBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF293241),
       appBar: SwiftAppBar('QuickBoard'),
       bottomNavigationBar: BottomNavBar(),
       body: Column(

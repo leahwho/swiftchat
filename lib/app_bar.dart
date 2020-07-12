@@ -10,8 +10,13 @@ class SwiftAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title),
-      backgroundColor: Colors.black,
+      title: Text(
+        title,
+        style: TextStyle(
+          color: Color(0xFFe8eddf),
+        ),
+      ),
+      backgroundColor: Color(0xFF293241),
     );
   }
 }
