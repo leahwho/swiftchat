@@ -91,21 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
               RegistrationScreen.id,
               Icons.person_add,
             ),
-            // HomeButton(
-            //   'ThreeBoard',
-            //   'threeboard',
-            //   Icons.save,
-            // ),
-            // HomeButton(
-            //   'FourBoard',
-            //   'fourboard',
-            //   Icons.four_k,
-            // ),
-            // HomeButton(
-            //   'Saved Boards',
-            //   'saved',
-            //   Icons.save,
-            // ),
           ],
         ),
       ),
