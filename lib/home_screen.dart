@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:swift_chat/boom_menu.dart';
 import 'package:swift_chat/home_button.dart';
 import 'home_button.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_boom_menu/flutter_boom_menu.dart';
 
 // TODO: Do you need these?
 import 'bottom_nav_bar.dart';
@@ -13,20 +16,23 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       // appBar: SwiftAppBar('SwiftChat'),
       // bottomNavigationBar: BottomNavBar(),
+
       body: Container(
+        width: double.infinity,
         color: Color(0xFF293241),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(height: 120),
             Text(
               'SwiftChat',
-              style: TextStyle(
-                fontFamily: 'FasterOne',
-                color: Color(0xFFe8eddf),
-                fontSize: 55.0,
+              style: GoogleFonts.chelseaMarket(
+                textStyle: TextStyle(
+                  color: Color(0xFFcfdbd5),
+                  fontSize: 70.0,
+                ),
               ),
             ),
-            const SizedBox(height: 50),
+            SizedBox(height: 30),
             Container(
               height: 300.0,
               child: Stack(
@@ -39,31 +45,30 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-            SizedBox(height: 30), // invisible
-            HomeButton(
-              'QuickBoard',
-              'quickboard',
-              Icons.add_circle,
-            ),
-            HomeButton(
-              'ThreeBoard',
-              'threeboard',
-              Icons.save,
-            ),
-            HomeButton(
-              'FourBoard',
-              'fourboard',
-              Icons.four_k,
-            ),
-            HomeButton(
-              'Saved Boards',
-              'saved',
-              Icons.save,
-            ),
+            // HomeButton(
+            //   'QuickBoard',
+            //   'quickboard',
+            //   Icons.add_circle,
+            // ),
+            // HomeButton(
+            //   'ThreeBoard',
+            //   'threeboard',
+            //   Icons.save,
+            // ),
+            // HomeButton(
+            //   'FourBoard',
+            //   'fourboard',
+            //   Icons.four_k,
+            // ),
+            // HomeButton(
+            //   'Saved Boards',
+            //   'saved',
+            //   Icons.save,
+            // ),
           ],
         ),
       ),
+      floatingActionButton: SwiftBoomMenu(),
     );
   }
 }
