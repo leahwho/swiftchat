@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flappy_search_bar/flappy_search_bar.dart';
 
 class BoardButton extends StatefulWidget {
   @override
@@ -7,61 +6,123 @@ class BoardButton extends StatefulWidget {
 }
 
 class _BoardButtonState extends State<BoardButton> {
-  // state to keep track of:
-  // display Text vs display Photo
-  // use a ternary for the container's child?  if there is imageState, display image, otherwise display text
+  String imgUrl;
+  String userQuery;
+  bool displayToggle = false;
+  // bool editable = true;
 
-  String buttonText = 'EDITABLE TEXT HERE';
-  // this should eventually display ONLY if the user has entered a search term and should be the search term itself
+  void updateCard(dynamic searchResults) {
+    if (searchResults == null) {
+      print('your search results are null! ugh!');
+    } else {
+      imgUrl = searchResults['imgUrl'];
+      userQuery = searchResults['userQuery'];
+      setState(() {
+        displayToggle = true;
+        // editable = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: GestureDetector(
-        onTap: () {
+        // TODO: Do an onTap and onLongPress?
+        onLongPress: () async {
           print('Button pressed!');
-          // onTap, render a search bar popup
+          var searchResults = await Navigator.pushNamed(context, '/search');
+          updateCard(searchResults);
+        },
+        onTap: () {
+          Navigator.pushNamed(context, '/choice_screen');
         },
         child: Container(
           width: double.infinity,
           margin: EdgeInsets.all(10.0),
-          color: Colors.grey,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5.0),
+            color: Color(0xFFCfDBD5),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                child: Container(
-                  margin: EdgeInsets.all(10.0),
-                  color: Colors.grey.shade100,
-                  child: Center(
-                    child: Text(
-                      'TAP TO ADD IMAGE',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.black,
+                child: Center(
+                  child: Container(
+                    margin: EdgeInsets.all(10.0),
+                    color: Color(0xFFCfDBD5),
+                    child: Center(
+                      child: displayToggle
+                          ? Image.network(imgUrl)
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.touch_app,
+                                      size: 30.0,
+                                    ),
+                                    SizedBox(width: 10.0),
+                                    Text(
+                                      'LONGPRESS TO SEARCH',
+                                      style: TextStyle(
+                                        fontSize: 27.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30.0,
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.tap_and_play,
+                                      size: 30.0,
+                                    ),
+                                    SizedBox(width: 10.0),
+                                    Text(
+                                      'TAP TO SPEAK',
+                                      style: TextStyle(
+                                        fontSize: 27.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                    ),
+                  ),
+                ),
+              ),
+              displayToggle
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: TextField(
+                        style: TextStyle(
+                          fontSize: 30.0,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.edit,
+                            color: Colors.black,
+                            size: 20.0,
+                          ),
+                          border: InputBorder.none,
+                          hintText: userQuery,
+                          hintStyle: TextStyle(
+                            fontSize: 30.0,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.edit,
-                      color: Colors.black,
-                    ),
-                    border: InputBorder.none,
-                    hintText: buttonText,
-                    hintStyle: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
+                    )
+                  : Container(),
             ],
           ),
         ),
