@@ -4,7 +4,8 @@ import 'package:swift_chat/boom_menu.dart';
 import 'bottom_nav_bar.dart';
 import 'board_button.dart';
 
-class QuickBoard extends StatelessWidget {
+class TwoBoard extends StatelessWidget {
+  static String id = 'two_board';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

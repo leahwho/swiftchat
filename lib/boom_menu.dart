@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boom_menu/flutter_boom_menu.dart';
+import 'quick_board.dart';
+import 'three_board.dart';
+import 'four_board.dart';
 
 class SwiftBoomMenu extends StatelessWidget {
   @override
@@ -31,7 +34,7 @@ class SwiftBoomMenu extends StatelessWidget {
           subTitleColor: Color(0xFF333533),
           backgroundColor: Color(0xFFcfdbd5),
           onTap: () {
-            Navigator.pushNamed(context, '/quickboard');
+            Navigator.pushNamed(context, TwoBoard.id);
           },
         ),
         MenuItem(
@@ -46,7 +49,7 @@ class SwiftBoomMenu extends StatelessWidget {
           subTitleColor: Color(0xFF333533),
           backgroundColor: Color(0xFFcfdbd5),
           onTap: () {
-            Navigator.pushNamed(context, '/threeboard');
+            Navigator.pushNamed(context, ThreeBoard.id);
           },
         ),
         MenuItem(
@@ -61,7 +64,7 @@ class SwiftBoomMenu extends StatelessWidget {
           subTitleColor: Color(0xFF333533),
           backgroundColor: Color(0xFFcfdbd5),
           onTap: () {
-            Navigator.pushNamed(context, '/fourboard');
+            Navigator.pushNamed(context, FourBoard.id);
           },
         ),
         MenuItem(
