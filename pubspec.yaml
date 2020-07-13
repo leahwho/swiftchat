@@ -31,6 +31,11 @@ dependencies:
   convex_bottom_bar: ^2.2.4
   flutter_arc_speed_dial: ^1.0.3
   animations: ^1.1.1
+  firebase_core: ^0.4.5
+  firebase_auth: ^0.16.1
+  cloud_firestore: ^0.13.7
+
+
 
 
 dev_dependencies:

@@ -6,6 +6,7 @@ import 'board_button.dart';
 import 'boom_menu.dart';
 
 class ThreeBoard extends StatelessWidget {
+  static String id = 'three_board';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

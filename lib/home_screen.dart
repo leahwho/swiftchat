@@ -1,16 +1,18 @@
+// packages
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:swift_chat/boom_menu.dart';
-import 'package:swift_chat/home_button.dart';
-import 'home_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_boom_menu/flutter_boom_menu.dart';
 
+// screens & components
+import 'home_button.dart';
+import 'boom_menu.dart';
 // TODO: Do you need these?
 import 'bottom_nav_bar.dart';
 import 'app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
+  static String id = 'home_screen';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

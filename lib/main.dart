@@ -16,12 +16,12 @@ class SwiftChat extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => HomeScreen(),
-        '/quickboard': (context) => QuickBoard(),
-        '/search': (context) => SwiftSearch(),
-        '/choice_screen': (context) => ChoiceScreen(),
-        '/threeboard': (context) => ThreeBoard(),
-        '/fourboard': (context) => FourBoard(),
+        HomeScreen.id: (context) => HomeScreen(),
+        TwoBoard.id: (context) => TwoBoard(),
+        ThreeBoard.id: (context) => ThreeBoard(),
+        FourBoard.id: (context) => FourBoard(),
+        SwiftSearch.id: (context) => SwiftSearch(),
+        ChoiceScreen.id: (context) => ChoiceScreen(),
         // '/saved' => (context) => SavedBoards(),
       },
     );

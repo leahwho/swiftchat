@@ -5,6 +5,7 @@ import 'board_button.dart';
 import 'boom_menu.dart';
 
 class FourBoard extends StatelessWidget {
+  static String id = 'four_board';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

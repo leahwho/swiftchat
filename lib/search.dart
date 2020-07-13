@@ -8,6 +8,7 @@ import 'bottom_nav_bar.dart';
 import 'src.dart';
 
 class SwiftSearch extends StatefulWidget {
+  static String id = 'search_screen';
   @override
   _SwiftSearchState createState() => _SwiftSearchState();
 }
