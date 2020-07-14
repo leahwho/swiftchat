@@ -10,7 +10,7 @@ class TwoBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF293241),
-      appBar: SwiftAppBar('QuickBoard'),
+      appBar: SwiftAppBar('TwoChoice'),
       //bottomNavigationBar: BottomNavBar(),
       floatingActionButton: SwiftBoomMenu(),
       body: Padding(
