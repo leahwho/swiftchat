@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swift_chat/login_screen.dart';
 import 'package:swift_chat/search.dart';
-import 'quick_board.dart';
+import 'two_board.dart';
 import 'home_screen.dart';
 import 'choice_screen.dart';
 import 'three_board.dart';
