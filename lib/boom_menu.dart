@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boom_menu/flutter_boom_menu.dart';
-import 'quick_board.dart';
+import 'two_board.dart';
 import 'three_board.dart';
 import 'four_board.dart';
 
@@ -67,19 +67,7 @@ class SwiftBoomMenu extends StatelessWidget {
             Navigator.pushNamed(context, FourBoard.id);
           },
         ),
-        MenuItem(
-          child: Icon(
-            Icons.save,
-            size: 35.0,
-            color: Color(0xFF22223b),
-          ),
-          title: "Saved Boards",
-          titleColor: Color(0xFF242423),
-          subtitle: "View all saved boards",
-          subTitleColor: Color(0xFF333533),
-          backgroundColor: Color(0xFFcfdbd5),
-          onTap: () => print('FOURTH CHILD'),
-        )
+        
       ],
     );
   }
