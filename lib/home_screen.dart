@@ -9,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 // screens & components
 import 'home_button.dart';
 import 'boom_menu.dart';
+import 'two_board.dart';
 // TODO: Do you need these?
 import 'bottom_nav_bar.dart';
 import 'app_bar.dart';
@@ -90,6 +91,11 @@ class _HomeScreenState extends State<HomeScreen> {
               'Register',
               RegistrationScreen.id,
               Icons.person_add,
+            ),
+            HomeButton(
+              'QuickBoard',
+              TwoBoard.id,
+              Icons.add_circle
             ),
           ],
         ),
