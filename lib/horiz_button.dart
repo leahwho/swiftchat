@@ -41,32 +41,49 @@ class _HorizButtonState extends State<HorizButton> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 25.0, vertical: 8.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    child: GestureDetector(
-                      onTap: () {
-                        print('Image was clicked!');
-                        Navigator.pushNamed(context, ChoiceScreen.id);
-                      },
-                      child: displayToggle? Image.network(
-                            imgUrl) : Container(),
-                    ),
+                  child: Row(
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        child: GestureDetector(
+                          onTap: () {
+                            print('Image was clicked!');
+                            Navigator.pushNamed(context, ChoiceScreen.id);
+                          },
+                          child: displayToggle
+                              ? Container(
+                                  width: 225,
+                                  margin: EdgeInsets.only(right: 20),
+                                  child: Image.network(imgUrl),
+                                )
+                              : Container(),
+                        ),
+                      ),
+                      displayToggle
+                          ? Text(
+                              userQuery,
+                              style: TextStyle(fontSize: 20.0),
+                            )
+                          : Text(''),
+                    ],
                   ),
                 ),
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  margin: EdgeInsets.only(top: 10),
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 40.0, bottom: 10.0),
-                    child: displayToggle ? Text(
-                      userQuery,
-                      style: TextStyle(fontSize: 20.0),
-                    ) : Text(''),
-                  ),
-                ),
-              ),
+              // Align(
+              //   alignment: Alignment.centerRight,
+              //   child: Container(
+              //     margin: EdgeInsets.only(top: 10),
+              //     child: Padding(
+              //       padding: EdgeInsets.only(right: 40.0, bottom: 10.0),
+              //       child: displayToggle
+              //           ? Text(
+              //               userQuery,
+              //               style: TextStyle(fontSize: 20.0),
+              //             )
+              //           : Text(''),
+              //     ),
+              //   ),
+              // ),
               Align(
                 alignment: Alignment.topRight,
                 child: IconButton(
@@ -87,8 +104,8 @@ class _HorizButtonState extends State<HorizButton> {
                   onPressed: () async {
                     print('search was pressed');
                     var searchResults =
-                            await Navigator.pushNamed(context, SwiftSearch.id);
-                        updateCard(searchResults);
+                        await Navigator.pushNamed(context, SwiftSearch.id);
+                    updateCard(searchResults);
                   },
                 ),
               ),
