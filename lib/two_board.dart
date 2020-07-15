@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swift_chat/app_bar.dart';
 import 'package:swift_chat/boom_menu.dart';
-import 'bottom_nav_bar.dart';
 import 'board_button.dart';
 
 class TwoBoard extends StatelessWidget {
