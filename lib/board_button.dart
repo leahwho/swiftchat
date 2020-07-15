@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'choice_screen.dart';
 import 'search.dart';
+import 'data.dart';
 
 class BoardButton extends StatefulWidget {
   @override
@@ -46,15 +47,19 @@ class _BoardButtonState extends State<BoardButton> {
                     child: GestureDetector(
                       onTap: () {
                         print('Image was clicked!');
-                        Navigator.pushNamed(context, ChoiceScreen.id);
+                        
+                        Data data =
+                                new Data(imgUrl: imgUrl, userQuery: userQuery);
+                            Navigator.pushNamed(context, ChoiceScreen.id,
+                                arguments: data);
                       },
                       child: Container(
                         height: 260,
                         padding: EdgeInsets.only(
                           bottom: 10.0,
                         ),
-                        child: displayToggle? Image.network(
-                            imgUrl) : Container(),
+                        child:
+                            displayToggle ? Image.network(imgUrl) : Container(),
                       ),
                     ),
                   ),
@@ -64,7 +69,9 @@ class _BoardButtonState extends State<BoardButton> {
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 10.0),
-                  child: displayToggle ? Text(userQuery, style: TextStyle(fontSize: 25.0)) : Text(''),
+                  child: displayToggle
+                      ? Text(userQuery, style: TextStyle(fontSize: 25.0))
+                      : Text(''),
                 ),
               ),
               Align(
@@ -86,8 +93,8 @@ class _BoardButtonState extends State<BoardButton> {
                   onPressed: () async {
                     print('search was pressed');
                     var searchResults =
-                            await Navigator.pushNamed(context, SwiftSearch.id);
-                        updateCard(searchResults);
+                        await Navigator.pushNamed(context, SwiftSearch.id);
+                    updateCard(searchResults);
                   },
                 ),
               ),

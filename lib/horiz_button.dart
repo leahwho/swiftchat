@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'choice_screen.dart';
 import 'search.dart';
+import 'data.dart';
 
 class HorizButton extends StatefulWidget {
   @override
@@ -48,7 +49,11 @@ class _HorizButtonState extends State<HorizButton> {
                         child: GestureDetector(
                           onTap: () {
                             print('Image was clicked!');
-                            Navigator.pushNamed(context, ChoiceScreen.id);
+                            // here we send the data to the next page
+                            Data data =
+                                new Data(imgUrl: imgUrl, userQuery: userQuery);
+                            Navigator.pushNamed(context, ChoiceScreen.id,
+                                arguments: data);
                           },
                           child: displayToggle
                               ? Container(
@@ -69,21 +74,6 @@ class _HorizButtonState extends State<HorizButton> {
                   ),
                 ),
               ),
-              // Align(
-              //   alignment: Alignment.centerRight,
-              //   child: Container(
-              //     margin: EdgeInsets.only(top: 10),
-              //     child: Padding(
-              //       padding: EdgeInsets.only(right: 40.0, bottom: 10.0),
-              //       child: displayToggle
-              //           ? Text(
-              //               userQuery,
-              //               style: TextStyle(fontSize: 20.0),
-              //             )
-              //           : Text(''),
-              //     ),
-              //   ),
-              // ),
               Align(
                 alignment: Alignment.topRight,
                 child: IconButton(
