@@ -13,6 +13,7 @@ import 'two_board.dart';
 // TODO: Do you need these?
 import 'bottom_nav_bar.dart';
 import 'app_bar.dart';
+import 'playground.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = 'home_screen';
@@ -82,21 +83,10 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 30.0,
             ),
-            HomeButton(
-              'Login',
-              LoginScreen.id,
-              Icons.account_circle,
-            ),
-            HomeButton(
-              'Register',
-              RegistrationScreen.id,
-              Icons.person_add,
-            ),
-            HomeButton(
-              'QuickBoard',
-              TwoBoard.id,
-              Icons.add_circle
-            ),
+            HomeButton('Login', LoginScreen.id, Color(0xFFcfdbd5)),
+            HomeButton('Register', RegistrationScreen.id, Color(0xFFcfdbd5)),
+            HomeButton('QuickBoard', TwoBoard.id, Color(0xFFe8eddf)),
+            HomeButton('Playground', Playground.id, Color(0xFFe8eddf)),
           ],
         ),
       ),
