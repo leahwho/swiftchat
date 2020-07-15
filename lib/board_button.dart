@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'choice_screen.dart';
 import 'search.dart';
 
-
 class BoardButton extends StatefulWidget {
   @override
   _BoardButtonState createState() => _BoardButtonState();
@@ -33,52 +32,65 @@ class _BoardButtonState extends State<BoardButton> {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
-            color: Color(0xFFCfDBD5),
-          ),
+        child: Card(
+          color: Color(0xFFCfDBD5),
           margin: EdgeInsets.all(2.0),
           child: Stack(
-            //mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              displayToggle
-                  ? GestureDetector(
-                      onTap: () {
+              Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    child: GestureDetector(
+                      onTap: () async {
+                        print('Image was clicked!');
                         Navigator.pushNamed(context, ChoiceScreen.id);
                       },
-                      child: Center(
-                        child: Container(
-                          child: Image.network(imgUrl),
+                      child: Container(
+                        height: 260,
+                        padding: EdgeInsets.only(
+                          bottom: 10.0,
                         ),
+                        child: displayToggle? Image.network(
+                            imgUrl) : Container(),
                       ),
-                    )
-                  : Container(),
-              ButtonBar(
-                alignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  // TODO: Figure out how to display text
-                  // displayToggle ? Text(userQuery) : Text(''),
-                  IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: () async {
-                      print('Button pressed!');
-                      var searchResults =
-                          await Navigator.pushNamed(context, SwiftSearch.id);
-                      updateCard(searchResults);
-                    },
+                    ),
                   ),
-                  IconButton(
-                    icon: Icon(Icons.cancel),
-                    onPressed: () {
-                      setState(() {
-                        displayToggle = false;
-                        imgUrl = '';
-                      });
-                    },
-                  ),
-                ],
-              )
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: displayToggle ? Text(userQuery, style: TextStyle(fontSize: 25.0)) : Text(''),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: Icon(Icons.clear),
+                  onPressed: () {
+                    print('Clear was pressed!');
+                    setState(() {
+                      displayToggle = false;
+                    });
+                  },
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () async {
+                    print('search was pressed');
+                    var searchResults =
+                            await Navigator.pushNamed(context, SwiftSearch.id);
+                        updateCard(searchResults);
+                  },
+                ),
+              ),
             ],
           ),
         ),
