@@ -31,61 +31,70 @@ class _HorizButtonState extends State<HorizButton> {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
-              color: Color(0xFFCfDBD5),
-            ),
-            margin: EdgeInsets.all(2.0),
-            child: Row(
-              children: <Widget>[
-                displayToggle
-                    ? GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, ChoiceScreen.id);
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Container(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                              child: Image.network(imgUrl)),
-                            width: 325,
-                          ),
-                        ),
-                      )
-                    : Container(
-                        width: 345,
-                      ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    // TODO: Figure out how to display text
-                    // displayToggle ? Text(userQuery) : Text(''),
-                    IconButton(
-                      icon: Icon(Icons.search),
-                      onPressed: () async {
-                        print('Search pressed!');
-                        var searchResults =
+        child: Card(
+          color: Color(0xFFCfDBD5),
+          margin: EdgeInsets.all(2.0),
+          child: Stack(
+            children: <Widget>[
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 25.0, vertical: 8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    child: GestureDetector(
+                      onTap: () {
+                        print('Image was clicked!');
+                        Navigator.pushNamed(context, ChoiceScreen.id);
+                      },
+                      child: displayToggle? Image.network(
+                            imgUrl) : Container(),
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 40.0, bottom: 10.0),
+                    child: displayToggle ? Text(
+                      userQuery,
+                      style: TextStyle(fontSize: 20.0),
+                    ) : Text(''),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: Icon(Icons.clear),
+                  onPressed: () {
+                    setState(
+                      () {
+                        displayToggle = false;
+                      },
+                    );
+                  },
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () async {
+                    print('search was pressed');
+                    var searchResults =
                             await Navigator.pushNamed(context, SwiftSearch.id);
                         updateCard(searchResults);
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.cancel),
-                      onPressed: () {
-                        print('Cancel pressed!');
-                        setState(() {
-                          displayToggle = false;
-                          imgUrl = '';
-                        });
-                      },
-                    ),
-                  ],
+                  },
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
