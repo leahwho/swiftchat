@@ -44,7 +44,7 @@ class _BoardButtonState extends State<BoardButton> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                     child: GestureDetector(
-                      onTap: () async {
+                      onTap: () {
                         print('Image was clicked!');
                         Navigator.pushNamed(context, ChoiceScreen.id);
                       },
