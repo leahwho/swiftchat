@@ -26,6 +26,25 @@ class BottomNavBar extends StatelessWidget {
     });
   }
 
+//   user: {
+//   boards: [
+//     {
+//       boardname: 'Animal Choices',
+//       cards: [
+//         {
+//           query: 'cat'
+//           imgUrl: 'www.somecat.com/thiscat'
+//         }
+//         {
+//           query: 'dog'
+//           imgUrl: 'www.somedog.com/thisdog'
+//         }
+//       ]
+//     },
+//   ]
+// }
+
+
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
