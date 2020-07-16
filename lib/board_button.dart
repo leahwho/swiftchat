@@ -54,7 +54,7 @@ class _BoardButtonState extends State<BoardButton> {
                                 arguments: data);
                       },
                       child: Container(
-                        height: 260,
+                        height: 225,
                         padding: EdgeInsets.only(
                           bottom: 10.0,
                         ),
