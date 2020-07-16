@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:swift_chat/app_bar.dart';
-import 'search.dart';
 import 'app_bar.dart';
 import 'boom_menu.dart';
 
 // this is a playground to see if you can get your button layout the way you want it!
+
 
 class Playground extends StatefulWidget {
   static String id = 'playground_screen';
@@ -14,6 +14,7 @@ class Playground extends StatefulWidget {
 }
 
 class _PlaygroundState extends State<Playground> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +34,9 @@ class _PlaygroundState extends State<Playground> {
                 child: Stack(
                   children: <Widget>[
                     Align(
-                      alignment: Alignment.center,
+                      alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 8.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(5.0)),
                           child: GestureDetector(
@@ -43,16 +44,22 @@ class _PlaygroundState extends State<Playground> {
                               print('Image was clicked!');
                             },
                             child: Image.network(
-                                'http://pressbooks-dev.oer.hawaii.edu/math111/wp-content/uploads/sites/17/2017/11/border1-300x290.png'),
+                                'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Rectangle_Geometry_Vector.svg/1920px-Rectangle_Geometry_Vector.svg.png'),
                           ),
                         ),
                       ),
                     ),
                     Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: 10.0),
-                        child: Text('Peanuts', style: TextStyle(fontSize: 25.0)),
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        margin: EdgeInsets.only(top: 10),
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 40.0, bottom: 10.0),
+                          child: Text(
+                            'Peanuts',
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        ),
                       ),
                     ),
                     Align(
@@ -74,6 +81,30 @@ class _PlaygroundState extends State<Playground> {
                       ),
                     ),
                   ],
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                color: Color(0xFFCfDBD5),
+                margin: EdgeInsets.all(2.0),
+                child: Column(
+                  children: <Widget>[],
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                color: Color(0xFFCfDBD5),
+                margin: EdgeInsets.all(2.0),
+                child: Column(
+                  children: <Widget>[],
                 ),
               ),
             ),
