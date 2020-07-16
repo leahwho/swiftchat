@@ -25,28 +25,30 @@ class WelcomeScreen extends StatelessWidget {
             SizedBox(
               height: 100.0,
             ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Image(
-                    image: AssetImage('images/bird.png'),
-                  ),
+            Text(
+              'SwiftChat',
+              style: GoogleFonts.chelseaMarket(
+                textStyle: TextStyle(
+                  color: Color(0xFFcfdbd5),
+                  fontSize: 70.0,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    right: 10.0,
-                  ),
-                  child: Text(
-                    'SwiftChat',
-                    style: GoogleFonts.chelseaMarket(
-                      textStyle: TextStyle(
-                        color: Color(0xFFcfdbd5),
-                        fontSize: 65.0,
-                      ),
+              ),
+            ),
+            SizedBox(height: 30),
+            Container(
+              height: 300.0,
+              child: Stack(
+                children: <Widget>[
+                  Image(
+                    image: AssetImage(
+                      'images/bird.png',
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 30.0,
             ),
             // Padding(
             //   padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -73,5 +75,6 @@ class WelcomeScreen extends StatelessWidget {
       // access your saved boards!
       // make a new board!
     );
+    
   }
 }
