@@ -2,16 +2,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 // screens & components
 import 'home_button.dart';
 import 'boom_menu.dart';
+import 'two_board.dart';
+import 'login_screen.dart';
+import 'registration_screen.dart';
+
 // TODO: Do you need these?
 import 'bottom_nav_bar.dart';
 import 'app_bar.dart';
+import 'playground.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static String id = 'home_screen';
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _auth = FirebaseAuth.instance;
+  FirebaseUser loggedInUser;
+
+  @override
+  void initState() {
+    super.initState();
+
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      // then you can display saved boards?
+      if (user != null) {
+        loggedInUser = user;
+        print(loggedInUser.email);
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,26 +81,14 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            // HomeButton(
-            //   'QuickBoard',
-            //   'quickboard',
-            //   Icons.add_circle,
-            // ),
-            // HomeButton(
-            //   'ThreeBoard',
-            //   'threeboard',
-            //   Icons.save,
-            // ),
-            // HomeButton(
-            //   'FourBoard',
-            //   'fourboard',
-            //   Icons.four_k,
-            // ),
-            // HomeButton(
-            //   'Saved Boards',
-            //   'saved',
-            //   Icons.save,
-            // ),
+            SizedBox(
+              height: 30.0,
+            ),
+            HomeButton('Login', LoginScreen.id, Color(0xFFcfdbd5)),
+            HomeButton('Register', RegistrationScreen.id, Color(0xFFcfdbd5)),
+            HomeButton('QuickBoard', TwoBoard.id, Color(0xFFe8eddf)),
+            // TODO: Remove this button before your final commit!
+            HomeButton('Playground', Playground.id, Color(0xFFe8eddf)),
           ],
         ),
       ),

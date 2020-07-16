@@ -3,39 +3,34 @@ import 'package:flutter/material.dart';
 class HomeButton extends StatelessWidget {
   String route;
   String buttonText;
-  IconData icon;
+  Color color;
 
   HomeButton(
     this.buttonText,
     this.route,
-    this.icon,
+    this.color,
   );
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
-      child: RaisedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/$route');
-        },
-        child: ListTile(
-          leading: Icon(
-            icon,
-            color: Colors.black,
-          ),
-          title: Text(
+      padding: EdgeInsets.symmetric(vertical: 5.0),
+      child: Material(
+        color: color,
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        elevation: 5.0,
+        child: MaterialButton(
+          onPressed: () async {
+            Navigator.pushNamed(context, route);
+          },
+          minWidth: 250.0,
+          height: 42.0,
+          child: Text(
             buttonText,
             style: TextStyle(
-              fontSize: 25,
               color: Colors.black,
+              fontSize: 18.0,
             ),
-          ),
-        ),
-        color: Color(0xFFe8eddf),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(12.0),
           ),
         ),
       ),

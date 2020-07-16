@@ -44,3 +44,5 @@ app.*.map.json
 
 lib/src.dart
 lib/sandbox.dart
+ios/Runner/GoogleService-Info.plist
+lib/playground.dart

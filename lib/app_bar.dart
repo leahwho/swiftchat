@@ -16,6 +16,19 @@ class SwiftAppBar extends StatelessWidget implements PreferredSizeWidget {
           color: Color(0xFFe8eddf),
         ),
       ),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.exit_to_app,
+            color: Color(0xFFe8eddf),
+          ),
+          onPressed: null,
+          // onPressed: () {
+          //   _auth.signOut(),
+          //   Navigator.pop(context);
+          // },
+        ),
+      ],
       backgroundColor: Color(0xFF293241),
     );
   }

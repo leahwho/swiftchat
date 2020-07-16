@@ -69,7 +69,6 @@ class _SwiftSearchState extends State<SwiftSearch> {
                       color: Colors.white,
                     ),
                     hintText: 'Enter Search Query',
-                    
                     hintStyle: TextStyle(
                       color: Colors.white,
                       fontSize: 20.0,
@@ -99,6 +98,12 @@ class _SwiftSearchState extends State<SwiftSearch> {
                         return Card(
                           child: InkWell(
                             onTap: () {
+                              // Navigator.of(context).pop();
+                              // Navigator.of(context).push(
+                              //   MaterialPageRoute(builder: (context) {
+                              //     returnTwoBoard(url & query)
+                              //   } ,)
+                              // )
                               Navigator.pop(
                                 context,
                                 {

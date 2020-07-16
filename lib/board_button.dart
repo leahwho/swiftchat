@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'choice_screen.dart';
+import 'search.dart';
+import 'data.dart';
+
 
 class BoardButton extends StatefulWidget {
   @override
@@ -9,17 +13,15 @@ class _BoardButtonState extends State<BoardButton> {
   String imgUrl;
   String userQuery;
   bool displayToggle = false;
-  // bool editable = true;
 
   void updateCard(dynamic searchResults) {
     if (searchResults == null) {
       print('your search results are null! ugh!');
     } else {
-      imgUrl = searchResults['imgUrl'];
-      userQuery = searchResults['userQuery'];
       setState(() {
         displayToggle = true;
-        // editable = false;
+        imgUrl = searchResults['imgUrl'];
+        userQuery = searchResults['userQuery'];
       });
     }
   }
@@ -27,102 +29,73 @@ class _BoardButtonState extends State<BoardButton> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: GestureDetector(
-        // TODO: Do an onTap and onLongPress?
-        onLongPress: () async {
-          print('Button pressed!');
-          var searchResults = await Navigator.pushNamed(context, '/search');
-          updateCard(searchResults);
-        },
-        onTap: () {
-          Navigator.pushNamed(context, '/choice_screen');
-        },
-        child: Container(
-          width: double.infinity,
-          margin: EdgeInsets.all(10.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
-            color: Color(0xFFCfDBD5),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card(
+          color: Color(0xFFCfDBD5),
+          margin: EdgeInsets.all(2.0),
+          child: Stack(
             children: <Widget>[
-              Expanded(
-                child: Center(
-                  child: Container(
-                    margin: EdgeInsets.all(10.0),
-                    color: Color(0xFFCfDBD5),
-                    child: Center(
-                      child: displayToggle
-                          ? Image.network(imgUrl)
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.touch_app,
-                                      size: 30.0,
-                                    ),
-                                    SizedBox(width: 10.0),
-                                    Text(
-                                      'LONGPRESS TO SEARCH',
-                                      style: TextStyle(
-                                        fontSize: 27.0,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 30.0,
-                                ),
-                                Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.tap_and_play,
-                                      size: 30.0,
-                                    ),
-                                    SizedBox(width: 10.0),
-                                    Text(
-                                      'TAP TO SPEAK',
-                                      style: TextStyle(
-                                        fontSize: 27.0,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
+              Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    child: GestureDetector(
+                      onTap: () {
+                        print('Image was clicked!');
+
+                        Data data =
+                            new Data(imgUrl: imgUrl, userQuery: userQuery);
+                        Navigator.pushNamed(context, ChoiceScreen.id,
+                            arguments: data);
+                      },
+                      child: Container(
+                        height: 225,
+                        padding: EdgeInsets.only(
+                          bottom: 10.0,
+                        ),
+                        child:
+                            displayToggle ? Image.network(imgUrl) : Container(),
+                      ),
                     ),
                   ),
                 ),
               ),
-              displayToggle
-                  ? Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: TextField(
-                        style: TextStyle(
-                          fontSize: 30.0,
-                        ),
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.edit,
-                            color: Colors.black,
-                            size: 20.0,
-                          ),
-                          border: InputBorder.none,
-                          hintText: userQuery,
-                          hintStyle: TextStyle(
-                            fontSize: 30.0,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    )
-                  : Container(),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: displayToggle
+                      ? Text(userQuery, style: TextStyle(fontSize: 25.0))
+                      : Text(''),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: Icon(Icons.clear),
+                  onPressed: () {
+                    print('Clear was pressed!');
+                    setState(() {
+                      displayToggle = false;
+                    });
+                  },
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () async {
+                    print('search was pressed');
+                    var searchResults =
+                        await Navigator.pushNamed(context, SwiftSearch.id);
+                    updateCard(searchResults);
+                  },
+                ),
+              ),
             ],
           ),
         ),
@@ -130,3 +103,92 @@ class _BoardButtonState extends State<BoardButton> {
     );
   }
 }
+
+
+// Stateless option:
+// class BoardButton extends StatelessWidget {
+//   BoardButton(
+//       {this.imgUrl, this.userQuery, this.updateCard, this.displayToggle});
+
+//   final String imgUrl;
+//   final String userQuery;
+//   final void updateCard;
+//   final bool displayToggle;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Expanded(
+//       child: Padding(
+//         padding: EdgeInsets.all(8.0),
+//         child: Card(
+//           color: Color(0xFFCfDBD5),
+//           margin: EdgeInsets.all(2.0),
+//           child: Stack(
+//             children: <Widget>[
+//               Align(
+//                 alignment: Alignment.center,
+//                 child: Padding(
+//                   padding: const EdgeInsets.all(8.0),
+//                   child: ClipRRect(
+//                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
+//                     child: GestureDetector(
+//                       onTap: () {
+//                         print('Image was clicked!');
+
+//                         Data data =
+//                             new Data(imgUrl: imgUrl, userQuery: userQuery);
+//                         Navigator.pushNamed(context, ChoiceScreen.id,
+//                             arguments: data);
+//                       },
+//                       child: Container(
+//                         height: 225,
+//                         padding: EdgeInsets.only(
+//                           bottom: 10.0,
+//                         ),
+//                         child:
+//                             displayToggle ? Image.network(imgUrl) : Container(),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//               Align(
+//                 alignment: Alignment.bottomCenter,
+//                 child: Padding(
+//                   padding: EdgeInsets.only(bottom: 10.0),
+//                   child: displayToggle
+//                       ? Text(userQuery, style: TextStyle(fontSize: 25.0))
+//                       : Text(''),
+//                 ),
+//               ),
+//               Align(
+//                 alignment: Alignment.topRight,
+//                 child: IconButton(
+//                   icon: Icon(Icons.clear),
+//                   onPressed: () {
+//                     print('Clear was pressed!');
+//                     setState(() {
+//                       displayToggle = false;
+//                     });
+//                   },
+//                 ),
+//               ),
+//               Align(
+//                 alignment: Alignment.bottomRight,
+//                 child: IconButton(
+//                   icon: Icon(Icons.search),
+//                   onPressed: () async {
+//                     print('search was pressed');
+//                     var searchResults =
+//                         await Navigator.pushNamed(context, SwiftSearch.id);
+//                     updateCard(searchResults);
+//                   },
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
