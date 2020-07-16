@@ -79,9 +79,22 @@ class _TwoBoardState extends State<TwoBoard> {
         'this is button collection from callback after setstate: $buttonCollection');
   }
 
-  void clearClick() {
+  void clearClick(id) {
+    List newButtons = [];
+
+    for (var button in buttonCollection) {
+      if (button['id'] == id) {
+        button['imgUrl'] = '';
+        button['userQuery'] = '';
+        button['displayToggle'] = false;
+        newButtons.add(button);
+      } else {
+        newButtons.add(button);
+      }
+    }
+
     setState(() {
-      displayToggle = false;
+      buttonCollection = newButtons;
     });
   }
 

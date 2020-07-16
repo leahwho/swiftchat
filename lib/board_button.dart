@@ -4,13 +4,14 @@ import 'search.dart';
 import 'data.dart';
 
 class BoardButton extends StatelessWidget {
-  BoardButton(
-      {this.id,
-      this.imgUrl,
-      this.userQuery,
-      this.displayToggle,
-      this.searchResults,
-      this.onClearClick});
+  BoardButton({
+    this.id,
+    this.imgUrl,
+    this.userQuery,
+    this.displayToggle,
+    this.searchResults,
+    this.onClearClick,
+  });
 
   final int id;
   final String imgUrl;
@@ -71,7 +72,7 @@ class BoardButton extends StatelessWidget {
                   icon: Icon(Icons.clear),
                   onPressed: () {
                     print('Clear was pressed!');
-                    this.onClearClick();
+                    this.onClearClick(id);
                   },
                 ),
               ),
