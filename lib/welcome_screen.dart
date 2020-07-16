@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swift_chat/app_bar.dart';
+import 'package:swift_chat/home_screen.dart';
 import 'app_bar.dart';
 import 'boom_menu.dart';
+import 'two_board.dart';
+import 'home_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static String id = 'welcome_screen';
@@ -45,23 +48,25 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Color(0xFFcfdbd5),
-                borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {},
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Saved Boards',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(vertical: 16.0),
+            //   child: Material(
+            //     color: Color(0xFFcfdbd5),
+            //     borderRadius: BorderRadius.all(Radius.circular(30.0)),
+            //     elevation: 5.0,
+            //     child: MaterialButton(
+            //       onPressed: () {},
+            //       minWidth: 200.0,
+            //       height: 42.0,
+            //       child: Text(
+            //         'Saved Boards',
+            //         style: TextStyle(color: Colors.black),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            HomeButton('QuickBoard', TwoBoard.id, Color(0xFFe8eddf)),
+            HomeButton('Saved Boards', HomeScreen.id, Color(0xFFe8eddf)),
           ],
         ),
       ),

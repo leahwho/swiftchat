@@ -47,7 +47,7 @@ class _HorizButtonState extends State<HorizButton> {
                       ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(5.0)),
                         child: GestureDetector(
-                          onTap: () {
+                          onTap: () async {
                             print('Image was clicked!');
                             // here we send the data to the next page
                             Data data =

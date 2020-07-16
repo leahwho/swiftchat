@@ -13,8 +13,8 @@ class ThreeBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF293241),
-      appBar: SwiftAppBar('ThreeBoard'),
-      //bottomNavigationBar: BottomNavBar(),
+      appBar: SwiftAppBar('Three Choices'),
+      bottomNavigationBar: BottomNavBar(),
       floatingActionButton: SwiftBoomMenu(),
       body: Padding(
         padding: EdgeInsets.only(bottom: 75.0),
