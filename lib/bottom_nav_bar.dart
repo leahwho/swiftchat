@@ -1,54 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:swift_chat/data.dart';
-import 'home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+
+import 'data.dart';
+import 'home_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
+  BottomNavBar({this.buttonCollection});
+
+  final List buttonCollection;
   final firestoreInstance = Firestore.instance;
 
-// this will work; now how do you get the data you need to save from the board to the nav bar..?
   void saveBoard() {
     firestoreInstance.collection("boards").add({
-      "board_id": 'a test board',
-      "board": {
-        'card1': {
-          'imgUrl': 'www.sometestimage.com',
-          'userQuery': 'the user query'
-        },
-        'card2': {
-          'imgUrl': 'www.sometestimage.com',
-          'userQuery': 'the user query'
-        },
-      },
+        "cards": buttonCollection
     }).then((value) {
       print(value.documentID);
     });
   }
 
-//   user: {
-//   boards: [
-//     {
-//       boardname: 'Animal Choices',
-//       cards: [
-//         {
-//           query: 'cat'
-//           imgUrl: 'www.somecat.com/thiscat'
-//         }
-//         {
-//           query: 'dog'
-//           imgUrl: 'www.somedog.com/thisdog'
-//         }
-//       ]
-//     },
-//   ]
-// }
-
-
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
       color: Color(0xFF293241),
+      // shape: CircularNotchedRectangle(),
+      // notchMargin: 5.0,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,3 +49,28 @@ class BottomNavBar extends StatelessWidget {
     );
   }
 }
+
+// child: BottomNavigationBar(backgroundColor: Color(0xFF293241), items: [
+//           BottomNavigationBarItem(
+//             icon: Icon(Icons.home),
+//             title: Text('Home'),
+//           ),
+//           BottomNavigationBarItem(
+//             icon: Icon(Icons.save),
+//             title: Text('Save'),
+//           ),
+//         ])
+
+// ConvexAppBar(
+//       backgroundColor: Color(0xFF293241),
+//       items: [
+//         TabItem(icon: Icons.home, title: 'Home'),
+//         // TabItem(icon: Icons.map, title: 'Discovery'),
+//         TabItem(icon: Icons.add, title: 'Add'),
+//         // TabItem(icon: Icons.message, title: 'Message'),
+//         TabItem(icon: Icons.save_alt, title: 'Save'),
+//       ],
+//       initialActiveIndex: 2, //optional, default as 0
+//       style: TabStyle.fixedCircle,
+//       onTap: (int i) => print('click index=$i'),
+//     );

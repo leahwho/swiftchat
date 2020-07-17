@@ -20,6 +20,7 @@ class SwiftChat extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: HomeScreen.id,
+      debugShowCheckedModeBanner: false,
       routes: {
         HomeScreen.id: (context) => HomeScreen(),
         TwoBoard.id: (context) => TwoBoard(),

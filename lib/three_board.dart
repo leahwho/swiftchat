@@ -103,7 +103,7 @@ void clearClick(id) {
     return Scaffold(
       backgroundColor: Color(0xFF293241),
       appBar: SwiftAppBar('Three Choices'),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(buttonCollection: buttonCollection),
       floatingActionButton: SwiftBoomMenu(),
       body: Padding(
         padding: EdgeInsets.only(bottom: 75.0),

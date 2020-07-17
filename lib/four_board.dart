@@ -103,7 +103,7 @@ State<FourBoard> {
     return Scaffold(
       backgroundColor: Color(0xFF293241),
       appBar: SwiftAppBar('Four Choices'),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(buttonCollection: buttonCollection),
       floatingActionButton: SwiftBoomMenu(),
       body: Padding(
         padding: EdgeInsets.only(
