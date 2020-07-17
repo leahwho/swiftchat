@@ -3,29 +3,23 @@ import 'choice_screen.dart';
 import 'search.dart';
 import 'data.dart';
 
-class HorizButton extends StatefulWidget {
-  @override
-  _HorizButtonState createState() => _HorizButtonState();
-}
+class HorizButton extends StatelessWidget {
+  
+  HorizButton({
+    this.id,
+    this.imgUrl,
+    this.userQuery,
+    this.displayToggle,
+    this.searchResults,
+    this.onClearClick,
+  });
 
-class _HorizButtonState extends State<HorizButton> {
-  String imgUrl;
-  String userQuery;
-  bool displayToggle = false;
-
-  void updateCard(dynamic searchResults) {
-    if (searchResults == null) {
-      print('your search results are null! ugh!');
-    } else {
-      imgUrl = searchResults['imgUrl'];
-      userQuery = searchResults['userQuery'];
-      setState(() {
-        displayToggle = true;
-        print(imgUrl);
-        print(userQuery);
-      });
-    }
-  }
+  final int id;
+  final String imgUrl;
+  final String userQuery;
+  final bool displayToggle;
+  final Function searchResults;
+  final Function onClearClick;
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +73,8 @@ class _HorizButtonState extends State<HorizButton> {
                 child: IconButton(
                   icon: Icon(Icons.clear),
                   onPressed: () {
-                    setState(
-                      () {
-                        displayToggle = false;
-                      },
-                    );
+                    print('Clear was pressed!');
+                    this.onClearClick(id);
                   },
                 ),
               ),
@@ -95,7 +86,7 @@ class _HorizButtonState extends State<HorizButton> {
                     print('search was pressed');
                     var searchResults =
                         await Navigator.pushNamed(context, SwiftSearch.id);
-                    updateCard(searchResults);
+                    this.searchResults(searchResults, id);
                   },
                 ),
               ),
