@@ -10,6 +10,7 @@ import 'boom_menu.dart';
 import 'two_board.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
+import 'saved_boards.dart';
 
 // TODO: Do you need these?
 import 'bottom_nav_bar.dart';
@@ -26,12 +27,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
   FirebaseUser loggedInUser;
+  bool userLoggedIn = false;
 
   @override
   void initState() {
-    super.initState();
-
     getCurrentUser();
+    super.initState();
   }
 
   void getCurrentUser() async {
@@ -40,11 +41,31 @@ class _HomeScreenState extends State<HomeScreen> {
       // then you can display saved boards?
       if (user != null) {
         loggedInUser = user;
-        print(loggedInUser.email);
+        setState(() {
+          userLoggedIn = true;
+        });
+        print('${loggedInUser.email} is logged in');
+        return;
       }
     } catch (error) {
       print(error);
     }
+    print('there is no user logged in');
+  }
+
+  // bool userLoggedIn() {
+  //   if (loggedInUser != null) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
+  void logout() async {
+    await _auth.signOut();
+    setState(() {
+      userLoggedIn = false;
+    });
   }
 
   @override
@@ -84,11 +105,51 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 30.0,
             ),
-            HomeButton('Login', LoginScreen.id, Color(0xFFcfdbd5)),
-            HomeButton('Register', RegistrationScreen.id, Color(0xFFcfdbd5)),
+            userLoggedIn
+                ? Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5.0),
+                    child: Material(
+                      color: Color(0xFFcfdbd5),
+                      borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                      elevation: 5.0,
+                      child: MaterialButton(
+                        onPressed: () async {
+                          logout();
+                        },
+                        minWidth: 250.0,
+                        height: 42.0,
+                        child: Text(
+                          'Log Out',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : HomeButton(
+                    'Login',
+                    LoginScreen.id,
+                    Color(0xFFcfdbd5),
+                  ),
+            userLoggedIn
+                ? SizedBox(height: 0)
+                : HomeButton(
+                    'Register',
+                    RegistrationScreen.id,
+                    Color(0xFFcfdbd5),
+                  ),
             HomeButton('QuickBoard', TwoBoard.id, Color(0xFFe8eddf)),
-            // TODO: Remove this button before your final commit!
-            HomeButton('Playground', Playground.id, Color(0xFFe8eddf)),
+            userLoggedIn
+                ? HomeButton(
+                    'Saved Boards',
+                    SavedBoards.id,
+                    Color(0xFFe8eddf),
+                  )
+                : SizedBox(
+                    height: 0,
+                  ),
           ],
         ),
       ),

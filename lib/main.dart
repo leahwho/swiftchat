@@ -8,8 +8,9 @@ import 'three_board.dart';
 import 'four_board.dart';
 import 'registration_screen.dart';
 import 'login_screen.dart';
-import 'welcome_screen.dart';
+
 import 'playground.dart';
+import 'saved_boards.dart';
 
 void main() {
   runApp(SwiftChat());
@@ -30,9 +31,9 @@ class SwiftChat extends StatelessWidget {
         ChoiceScreen.id: (context) => ChoiceScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
-        WelcomeScreen.id: (context) => WelcomeScreen(),
+       
         Playground.id: (context) => Playground(),
-        // '/saved' => (context) => SavedBoards(),
+        SavedBoards.id: (context) => SavedBoards(),
       },
     );
   }
