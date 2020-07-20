@@ -14,11 +14,15 @@ class TwoBoard extends StatefulWidget {
 
 class _TwoBoardState extends State<TwoBoard> {
   final firestoreInstance = Firestore.instance;
+  dynamic data;
 
   List buttonCollection = [];
   String imgUrl;
   String userQuery;
   bool displayToggle = false;
+
+  // state for saved board vs. user constructed
+  bool savedBoard = false;
 
   @override
   void initState() {
@@ -100,8 +104,16 @@ class _TwoBoardState extends State<TwoBoard> {
 
   @override
   Widget build(BuildContext context) {
-    // print(
-        // ' this is button collection from inside BuildContext: $buttonCollection');
+    RouteSettings settings = ModalRoute.of(context).settings;
+
+    data = settings.arguments;
+
+    if (data != null) {
+      setState(() {
+        buttonCollection = data;
+      });
+    }
+
     return Scaffold(
       backgroundColor: Color(0xFF293241),
       appBar: SwiftAppBar('Two Choices'),
