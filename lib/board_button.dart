@@ -3,7 +3,7 @@ import 'choice_screen.dart';
 import 'search.dart';
 import 'data.dart';
 
-class BoardButton extends StatelessWidget {
+class BoardButton extends StatefulWidget {
   BoardButton({
     this.id,
     this.imgUrl,
@@ -13,15 +13,82 @@ class BoardButton extends StatelessWidget {
     this.onClearClick,
   });
 
-  final int id;
-  final String imgUrl;
-  final String userQuery;
-  final bool displayToggle;
-  final Function searchResults;
-  final Function onClearClick;
+  int id;
+  String imgUrl;
+  bool displayToggle;
+  Function searchResults;
+  Function onClearClick;
+  String userQuery;
 
   @override
+  _BoardButtonState createState() => _BoardButtonState();
+}
+
+class _BoardButtonState extends State<BoardButton> {
+  String value;
+  @override
   Widget build(BuildContext context) {
+    Dialog editTextDialog = Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0)), //this right here
+      child: Container(
+        decoration: BoxDecoration(
+            color: Color(0xFFcfdbd5),
+            borderRadius: BorderRadius.circular(10.0)),
+        height: 200.0,
+        width: 300.0,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(15.0),
+              child: TextField(
+                onChanged: (text) {
+                  value = text;
+                },
+                autofocus: true,
+                decoration: InputDecoration(
+                  filled: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xFF293241),
+                    ),
+                  ),
+                  border: OutlineInputBorder(),
+                  fillColor: Color(0xFFe8eddf),
+                  hintText: 'Button Text',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Material(
+                color: Color(0xFF293241),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30.0),
+                ),
+                child: MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      widget.userQuery = value;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Update Button Text',
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -38,10 +105,8 @@ class BoardButton extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                     child: GestureDetector(
                       onTap: () {
-                        print('Image was clicked!');
-
-                        Data data =
-                            new Data(imgUrl: imgUrl, userQuery: userQuery);
+                        Data data = new Data(
+                            imgUrl: widget.imgUrl, userQuery: widget.userQuery);
                         Navigator.pushNamed(context, ChoiceScreen.id,
                             arguments: data);
                       },
@@ -50,8 +115,9 @@ class BoardButton extends StatelessWidget {
                         padding: EdgeInsets.only(
                           bottom: 10.0,
                         ),
-                        child:
-                            displayToggle ? Image.network(imgUrl) : Container(),
+                        child: widget.displayToggle
+                            ? Image.network(widget.imgUrl)
+                            : Container(),
                       ),
                     ),
                   ),
@@ -61,8 +127,16 @@ class BoardButton extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 10.0),
-                  child: displayToggle
-                      ? Text(userQuery, style: TextStyle(fontSize: 25.0))
+                  child: widget.displayToggle
+                      ? GestureDetector(
+                          onTap: () async {
+                            await showDialog(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    editTextDialog);
+                          },
+                          child: Text(widget.userQuery,
+                              style: TextStyle(fontSize: 25.0)))
                       : Text(''),
                 ),
               ),
@@ -71,8 +145,7 @@ class BoardButton extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(Icons.clear),
                   onPressed: () {
-                    print('Clear was pressed!');
-                    this.onClearClick(id);
+                    this.widget.onClearClick(widget.id);
                   },
                 ),
               ),
@@ -81,10 +154,9 @@ class BoardButton extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(Icons.search),
                   onPressed: () async {
-                    print('search was pressed');
                     var searchResults =
                         await Navigator.pushNamed(context, SwiftSearch.id);
-                    this.searchResults(searchResults, id);
+                    this.widget.searchResults(searchResults, widget.id);
                   },
                 ),
               ),
