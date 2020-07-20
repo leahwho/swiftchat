@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:swift_chat/two_board.dart';
+
 import 'app_bar.dart';
 import 'boom_menu.dart';
 import 'bottom_nav_bar.dart';
-import 'playground.dart';
 import 'two_board.dart';
 import 'three_board.dart';
 import 'four_board.dart';
@@ -62,6 +61,7 @@ class _SavedBoardsState extends State<SavedBoards> {
       appBar: SwiftAppBar('Saved Boards'),
       bottomNavigationBar: BottomNavBar(),
       floatingActionButton: SwiftBoomMenu(),
+      backgroundColor: Color(0xFF293241),
       body: ListView.builder(
         itemCount: boardCollection.length,
         itemBuilder: (context, index) {
@@ -79,11 +79,32 @@ class _SavedBoardsState extends State<SavedBoards> {
                     arguments: boardCollection[key]);
               }
             },
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
+            child: Card(
+              elevation: 8.0,
+              margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
               child: Container(
-                child: Text(
-                  key,
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(64, 75, 96, .9),
+                  borderRadius: BorderRadius.all(
+                    new Radius.circular(2.0),
+                  ),
+                ),
+                width: double.infinity,
+                child: ListTile(
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  title: Text(
+                    key,
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  trailing: Icon(
+                    Icons.keyboard_arrow_right,
+                    color: Colors.white,
+                    size: 30.0,
+                  ),
                 ),
               ),
             ),
@@ -93,4 +114,3 @@ class _SavedBoardsState extends State<SavedBoards> {
     );
   }
 }
-
