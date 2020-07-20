@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 import 'app_bar.dart';
 import 'boom_menu.dart';
@@ -19,18 +20,7 @@ class _SavedBoardsState extends State<SavedBoards> {
   final firestoreReference = Firestore.instance;
 
   Map boardCollection = {};
-  List boardNames = [
-    'A Board You Saved',
-    'Another Board',
-    'Previously Saved Board',
-    'A Nice and Great Board',
-    'ANOTHER Board',
-    'A Board You Saved 2',
-    'Another Board 2',
-    'Previously Saved Board 2',
-    'A Nice and Great Board 2',
-    'ANOTHER Board 2',
-  ];
+  bool showSpinner = true;
 
   @override
   void initState() {
@@ -52,6 +42,7 @@ class _SavedBoardsState extends State<SavedBoards> {
 
     setState(() {
       boardCollection = firestoreData;
+      showSpinner = false;
     });
   }
 
@@ -62,54 +53,58 @@ class _SavedBoardsState extends State<SavedBoards> {
       bottomNavigationBar: BottomNavBar(),
       floatingActionButton: SwiftBoomMenu(),
       backgroundColor: Color(0xFF293241),
-      body: ListView.builder(
-        itemCount: boardCollection.length,
-        itemBuilder: (context, index) {
-          String key = boardCollection.keys.elementAt(index);
-          return GestureDetector(
-            onTap: () {
-              if (boardCollection[key].length == 2) {
-                Navigator.pushNamed(context, TwoBoard.id,
-                    arguments: boardCollection[key]);
-              } else if (boardCollection[key].length == 3) {
-                Navigator.pushNamed(context, ThreeBoard.id,
-                    arguments: boardCollection[key]);
-              } else if (boardCollection[key].length == 4) {
-                Navigator.pushNamed(context, FourBoard.id,
-                    arguments: boardCollection[key]);
-              }
-            },
-            child: Card(
-              elevation: 8.0,
-              margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(64, 75, 96, .9),
-                  borderRadius: BorderRadius.all(
-                    new Radius.circular(2.0),
-                  ),
-                ),
-                width: double.infinity,
-                child: ListTile(
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                  title: Text(
-                    key,
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.white,
+      body: ModalProgressHUD(
+        inAsyncCall: showSpinner,
+        child: ListView.builder(
+          itemCount: boardCollection.length,
+          itemBuilder: (context, index) {
+            String key = boardCollection.keys.elementAt(index);
+            return GestureDetector(
+              onTap: () {
+                if (boardCollection[key].length == 2) {
+                  Navigator.pushNamed(context, TwoBoard.id,
+                      arguments: boardCollection[key]);
+                } else if (boardCollection[key].length == 3) {
+                  Navigator.pushNamed(context, ThreeBoard.id,
+                      arguments: boardCollection[key]);
+                } else if (boardCollection[key].length == 4) {
+                  Navigator.pushNamed(context, FourBoard.id,
+                      arguments: boardCollection[key]);
+                }
+              },
+              child: Card(
+                elevation: 8.0,
+                margin:
+                    new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(64, 75, 96, .9),
+                    borderRadius: BorderRadius.all(
+                      new Radius.circular(2.0),
                     ),
                   ),
-                  trailing: Icon(
-                    Icons.keyboard_arrow_right,
-                    color: Colors.white,
-                    size: 30.0,
+                  width: double.infinity,
+                  child: ListTile(
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                    title: Text(
+                      key,
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Colors.white,
+                      size: 30.0,
+                    ),
                   ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
