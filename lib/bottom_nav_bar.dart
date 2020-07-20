@@ -10,18 +10,55 @@ class BottomNavBar extends StatelessWidget {
   BottomNavBar({this.buttonCollection});
 
   final List buttonCollection;
+  String boardName;
   final firestoreInstance = Firestore.instance;
 
   void saveBoard() {
-    firestoreInstance.collection("boards").add({
-        "cards": buttonCollection
-    }).then((value) {
+    firestoreInstance
+        .collection("boards")
+        .add({"name": boardName, "cards": buttonCollection}).then((value) {
       print(value.documentID);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    
+
+    Dialog saveDialog = Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0)), //this right here
+      child: Container(
+        height: 300.0,
+        width: 300.0,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(15.0),
+              child: TextField(
+                onChanged: (text) {
+                  boardName = text;
+                  
+                },
+              ),
+            ),
+            Padding(padding: EdgeInsets.only(top: 50.0)),
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                saveBoard();
+              }, // send args back to board
+              child: Text(
+                'Save Board',
+                style: TextStyle(color: Colors.purple, fontSize: 18.0),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
     return BottomAppBar(
       color: Color(0xFF293241),
       // shape: CircularNotchedRectangle(),
@@ -40,8 +77,10 @@ class BottomNavBar extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.save),
             color: Colors.white,
-            onPressed: () {
-              saveBoard();
+            onPressed: () async {
+              await showDialog(
+                  context: context,
+                  builder: (BuildContext context) => saveDialog);
             },
           ),
         ],
