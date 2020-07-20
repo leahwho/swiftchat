@@ -13,9 +13,9 @@ import 'registration_screen.dart';
 import 'saved_boards.dart';
 
 // TODO: Do you need these?
-import 'bottom_nav_bar.dart';
-import 'app_bar.dart';
-import 'playground.dart';
+// import 'bottom_nav_bar.dart';
+// import 'app_bar.dart';
+// import 'playground.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = 'home_screen';
@@ -52,14 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     print('there is no user logged in');
   }
-
-  // bool userLoggedIn() {
-  //   if (loggedInUser != null) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
 
   void logout() async {
     await _auth.signOut();
@@ -105,6 +97,16 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 30.0,
             ),
+            HomeButton('QuickBoard', TwoBoard.id, Color(0xFFe8eddf)),
+            userLoggedIn
+                ? HomeButton(
+                    'Saved Boards',
+                    SavedBoards.id,
+                    Color(0xFFe8eddf),
+                  )
+                : SizedBox(
+                    height: 0,
+                  ),
             userLoggedIn
                 ? Padding(
                     padding: EdgeInsets.symmetric(vertical: 5.0),
@@ -139,16 +141,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     'Register',
                     RegistrationScreen.id,
                     Color(0xFFcfdbd5),
-                  ),
-            HomeButton('QuickBoard', TwoBoard.id, Color(0xFFe8eddf)),
-            userLoggedIn
-                ? HomeButton(
-                    'Saved Boards',
-                    SavedBoards.id,
-                    Color(0xFFe8eddf),
-                  )
-                : SizedBox(
-                    height: 0,
                   ),
           ],
         ),
