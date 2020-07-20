@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http; // this names the import http
 
+
 import 'dart:convert';
 
 import 'app_bar.dart';
@@ -18,6 +19,7 @@ class _SwiftSearchState extends State<SwiftSearch> {
   String userQuery;
   String imageAddress;
   bool displayImages = false;
+  
 
   Future<void> getSearchResults(userQuery) async {
     String url =
