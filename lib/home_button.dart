@@ -5,11 +5,11 @@ class HomeButton extends StatelessWidget {
   String buttonText;
   Color color;
 
-  HomeButton(
+  HomeButton({
     this.buttonText,
     this.route,
     this.color,
-  );
+  });
 
   @override
   Widget build(BuildContext context) {
