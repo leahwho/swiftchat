@@ -1,23 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'data.dart';
 import 'home_screen.dart';
 
-class BottomNavBar extends StatelessWidget {
+class BottomNavBar extends StatefulWidget {
   BottomNavBar({this.buttonCollection});
 
   final List buttonCollection;
+
+  @override
+  _BottomNavBarState createState() => _BottomNavBarState();
+}
+
+class _BottomNavBarState extends State<BottomNavBar> {
   String boardName;
+  FirebaseUser loggedInUser;
+  bool userLoggedIn = false;
   final firestoreInstance = Firestore.instance;
+  final _auth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    getCurrentUser();
+    super.initState();
+  }
 
   void saveBoard() {
-    firestoreInstance
-        .collection("boards")
-        .add({"name": boardName, "cards": buttonCollection}).then((value) {
+    firestoreInstance.collection("boards").add(
+        {"name": boardName, "cards": widget.buttonCollection}).then((value) {
       print(value.documentID);
     });
+  }
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      // then you can display saved boards?
+      if (user != null) {
+        loggedInUser = user;
+        setState(() {
+          userLoggedIn = true;
+        });
+        print('${loggedInUser.email} is logged in');
+        return;
+      }
+    } catch (error) {
+      print(error);
+    }
+    print('there is no user logged in');
   }
 
   @override
@@ -96,7 +129,7 @@ class BottomNavBar extends StatelessWidget {
               Navigator.pushNamed(context, HomeScreen.id);
             },
           ),
-          IconButton(
+          userLoggedIn ? IconButton(
             icon: Icon(Icons.save),
             color: Color(0xFFe8eddf),
             onPressed: () async {
@@ -104,10 +137,9 @@ class BottomNavBar extends StatelessWidget {
                   context: context,
                   builder: (BuildContext context) => saveDialog);
             },
-          ),
+          ) : SizedBox(width: 0.0,),
         ],
       ),
     );
   }
 }
-
