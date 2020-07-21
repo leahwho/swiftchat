@@ -3,7 +3,6 @@ import 'choice_screen.dart';
 import 'search.dart';
 import 'data.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 
 class HorizButton extends StatefulWidget {
   HorizButton({
