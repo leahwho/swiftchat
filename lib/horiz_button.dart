@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'choice_screen.dart';
 import 'search.dart';
 import 'data.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class HorizButton extends StatefulWidget {
   HorizButton({
@@ -26,8 +28,14 @@ class HorizButton extends StatefulWidget {
 
 class _HorizButtonState extends State<HorizButton> {
   String value;
+  final FlutterTts _flutterTts = FlutterTts();
+
   @override
   Widget build(BuildContext context) {
+    Future _speak(String text) async {
+      await _flutterTts.speak(text);
+    }
+
     Dialog editTextDialog = Dialog(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0)), //this right here
@@ -101,14 +109,14 @@ class _HorizButtonState extends State<HorizButton> {
                 alignment: Alignment.centerLeft,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 25.0, vertical: 8.0),
-                  child: Row(
-                    children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                        child: GestureDetector(
+                      horizontal: 10.0, vertical: 8.0),
+                  child: Container(
+                    width: 350.0,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                      child: GestureDetector(
                           onTap: () async {
-                            print('Image was clicked!');
+                            _speak(widget.userQuery);
                             // here we send the data to the next page
                             Data data = new Data(
                                 imgUrl: widget.imgUrl,
@@ -116,30 +124,40 @@ class _HorizButtonState extends State<HorizButton> {
                             Navigator.pushNamed(context, ChoiceScreen.id,
                                 arguments: data);
                           },
-                          child: widget.displayToggle
-                              ? Container(
-                                  width: 225,
-                                  margin: EdgeInsets.only(right: 20),
-                                  child: Image.network(widget.imgUrl),
-                                )
-                              : Container(),
-                        ),
-                      ),
-                      widget.displayToggle
-                          ? GestureDetector(
-                              onTap: () async {
-                                await showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        editTextDialog);
-                              },
-                              child: Text(
-                                widget.userQuery,
-                                style: TextStyle(fontSize: 20.0),
-                              ),
-                            )
-                          : Text(''),
-                    ],
+                          child: Row(
+                            children: <Widget>[
+                              widget.displayToggle
+                                  ? Expanded(
+                                      child: Image.network(
+                                        widget.imgUrl,
+                                      ),
+                                    )
+                                  : Container(),
+                              widget.displayToggle
+                                  ? GestureDetector(
+                                      onTap: () async {
+                                        await showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                editTextDialog);
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(15.0),
+                                        child: FittedBox(
+                                          fit: BoxFit.contain,
+                                          child: Text(
+                                            widget.userQuery,
+                                            softWrap: false,
+                                            overflow: TextOverflow.fade,
+                                            style: TextStyle(fontSize: 20.0),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : Text(''),
+                            ],
+                          )),
+                    ),
                   ),
                 ),
               ),
