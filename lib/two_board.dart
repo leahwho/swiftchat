@@ -42,9 +42,7 @@ class _TwoBoardState extends State<TwoBoard> {
         },
       );
       currentId++;
-      // print(currentId);
     }
-    // print('here is buttons from generateButtons: $buttons');
 
     setState(() {
       buttonCollection = buttons;
@@ -52,7 +50,7 @@ class _TwoBoardState extends State<TwoBoard> {
   }
 
   void searchResultsCallback(dynamic searchResults, id) {
-      List newButtons = [];
+    List newButtons = [];
 
     if (searchResults == null) {
       print('your search results are null! ugh! better luck next time');

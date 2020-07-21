@@ -32,7 +32,6 @@ class _ThreeBoardState extends State<ThreeBoard> {
     int currentId = 0;
 
     for (int i = 0; i < 3; i++) {
-      print(currentId);
       buttons.add(
         {
           'imgUrl': '',
@@ -42,9 +41,7 @@ class _ThreeBoardState extends State<ThreeBoard> {
         },
       );
       currentId++;
-      print(currentId);
     }
-    print('here is buttons from generateButtons: $buttons');
 
     setState(() {
       buttonCollection = buttons;
@@ -52,11 +49,6 @@ class _ThreeBoardState extends State<ThreeBoard> {
   }
 
   void searchResultsCallback(dynamic searchResults, id) {
-    print('this is search results from callback $searchResults');
-    print(
-        'this is button collection from callback before setstate: $buttonCollection');
-    print('this is id from callback: $id');
-
     List newButtons = [];
 
     if (searchResults == null) {
@@ -76,8 +68,6 @@ class _ThreeBoardState extends State<ThreeBoard> {
     setState(() {
       buttonCollection = newButtons;
     });
-    print(
-        'this is button collection from callback after setstate: $buttonCollection');
   }
 
 void clearClick(id) {
