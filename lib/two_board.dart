@@ -32,7 +32,6 @@ class _TwoBoardState extends State<TwoBoard> {
     int currentId = 0;
 
     for (int i = 0; i < 2; i++) {
-      // print(currentId);
       buttons.add(
         {
           'imgUrl': '',
@@ -104,7 +103,8 @@ class _TwoBoardState extends State<TwoBoard> {
     return Scaffold(
       backgroundColor: Color(0xFF293241),
       appBar: SwiftAppBar('Two Choices'),
-      bottomNavigationBar: BottomNavBar(buttonCollection: buttonCollection),
+      bottomNavigationBar: BottomNavBar(
+        buttonCollection: buttonCollection),
       floatingActionButton: SwiftBoomMenu(),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Padding(
