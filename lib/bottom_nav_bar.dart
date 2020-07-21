@@ -30,7 +30,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   void saveBoard() {
     firestoreInstance.collection("boards").add(
-        {"name": boardName, "cards": widget.buttonCollection}).then((value) {
+        {"name": boardName, "cards": widget.buttonCollection, "user": loggedInUser.email}).then((value) {
       print(value.documentID);
     });
   }
