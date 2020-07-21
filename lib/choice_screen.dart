@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'app_bar.dart';
 import 'bottom_nav_bar.dart';
-import 'horiz_button.dart';
 import 'data.dart';
 
 class ChoiceScreen extends StatefulWidget {
@@ -26,30 +25,36 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
       bottomNavigationBar: BottomNavBar(),
       body: Padding(
         padding: EdgeInsets.all(10.0),
-        child: Container(
-          height: 400,
-          child: Card(
-            color: Color(0xFFCfDBD5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5.0),
-                    child: Image.network(this.data.imgUrl),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    choice.sentenceCase,
-                    style: TextStyle(
-                      fontSize: 30.0,
+        child: Center(
+          child: Container(
+            height: 400,
+            width: double.infinity,
+            child: Card(
+              color: Color(0xFFCfDBD5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5.0),
+                      child: Image.network(
+                        this.data.imgUrl,
+                        height: 310,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      choice.sentenceCase,
+                      style: TextStyle(
+                        fontSize: 30.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

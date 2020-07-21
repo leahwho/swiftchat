@@ -294,6 +294,8 @@ PODS:
   - Flutter (1.0.0)
   - flutter_boom_menu (0.0.1):
     - Flutter
+  - flutter_tts (0.0.1):
+    - Flutter
   - google_sign_in (0.0.1):
     - Flutter
     - GoogleSignIn (~> 5.0)
@@ -387,6 +389,7 @@ DEPENDENCIES:
   - firebase_core_web (from `.symlinks/plugins/firebase_core_web/ios`)
   - Flutter (from `Flutter`)
   - flutter_boom_menu (from `.symlinks/plugins/flutter_boom_menu/ios`)
+  - flutter_tts (from `.symlinks/plugins/flutter_tts/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
   - google_sign_in_web (from `.symlinks/plugins/google_sign_in_web/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -435,6 +438,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_boom_menu:
     :path: ".symlinks/plugins/flutter_boom_menu/ios"
+  flutter_tts:
+    :path: ".symlinks/plugins/flutter_tts/ios"
   google_sign_in:
     :path: ".symlinks/plugins/google_sign_in/ios"
   google_sign_in_web:
@@ -465,6 +470,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 293f567159b6d66d1c990f13bb868066096c94ec
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_boom_menu: 2f6fd7100348797be93208bb39bad6d53ad53353
+  flutter_tts: 0f492aab6accf87059b72354fcb4ba934304771d
   google_sign_in: 6bd214b9c154f881422f5fe27b66aaa7bbd580cc
   google_sign_in_web: 52deb24929ac0992baff65c57956031c44ed44c3
   GoogleAppMeasurement: 8cd1f289d60e629cf16ab03363b9e89c776b9651

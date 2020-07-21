@@ -21,9 +21,6 @@ class _TwoBoardState extends State<TwoBoard> {
   String userQuery;
   bool displayToggle = false;
 
-  // state for saved board vs. user constructed
-  bool savedBoard = false;
-
   @override
   void initState() {
     super.initState();
@@ -45,9 +42,7 @@ class _TwoBoardState extends State<TwoBoard> {
         },
       );
       currentId++;
-      // print(currentId);
     }
-    // print('here is buttons from generateButtons: $buttons');
 
     setState(() {
       buttonCollection = buttons;
@@ -55,11 +50,6 @@ class _TwoBoardState extends State<TwoBoard> {
   }
 
   void searchResultsCallback(dynamic searchResults, id) {
-    // print('this is search results from callback $searchResults');
-    // print(
-    //     'this is button collection from callback before setstate: $buttonCollection');
-    // print('this is id from callback: $id');
-
     List newButtons = [];
 
     if (searchResults == null) {
@@ -79,8 +69,6 @@ class _TwoBoardState extends State<TwoBoard> {
     setState(() {
       buttonCollection = newButtons;
     });
-    // print(
-    //     'this is button collection from callback after setstate: $buttonCollection');
   }
 
   void clearClick(id) {
@@ -105,7 +93,6 @@ class _TwoBoardState extends State<TwoBoard> {
   @override
   Widget build(BuildContext context) {
     RouteSettings settings = ModalRoute.of(context).settings;
-
     data = settings.arguments;
 
     if (data != null) {

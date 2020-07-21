@@ -111,27 +111,3 @@ class BottomNavBar extends StatelessWidget {
   }
 }
 
-// child: BottomNavigationBar(backgroundColor: Color(0xFF293241), items: [
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.home),
-//             title: Text('Home'),
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.save),
-//             title: Text('Save'),
-//           ),
-//         ])
-
-// ConvexAppBar(
-//       backgroundColor: Color(0xFF293241),
-//       items: [
-//         TabItem(icon: Icons.home, title: 'Home'),
-//         // TabItem(icon: Icons.map, title: 'Discovery'),
-//         TabItem(icon: Icons.add, title: 'Add'),
-//         // TabItem(icon: Icons.message, title: 'Message'),
-//         TabItem(icon: Icons.save_alt, title: 'Save'),
-//       ],
-//       initialActiveIndex: 2, //optional, default as 0
-//       style: TabStyle.fixedCircle,
-//       onTap: (int i) => print('click index=$i'),
-//     );
