@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'home_screen.dart';
 
 class SwiftAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => new Size.fromHeight(kToolbarHeight);
@@ -6,6 +8,13 @@ class SwiftAppBar extends StatelessWidget implements PreferredSizeWidget {
   SwiftAppBar(this.title);
 
   final String title;
+  final _auth = FirebaseAuth.instance;
+
+  void logOut() {
+    if (_auth.currentUser() != null) {
+      _auth.signOut();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +31,10 @@ class SwiftAppBar extends StatelessWidget implements PreferredSizeWidget {
             Icons.exit_to_app,
             color: Color(0xFFe8eddf),
           ),
-          onPressed: null,
-          // onPressed: () {
-          //   _auth.signOut(),
-          //   Navigator.pop(context);
-          // },
+          onPressed: () {
+            logOut();
+            Navigator.pushNamed(context, HomeScreen.id);
+          },
         ),
       ],
       backgroundColor: Color(0xFF293241),
