@@ -19,6 +19,7 @@ State<FourBoard> {
   String imgUrl;
   String userQuery;
   bool displayToggle = false;
+  dynamic data;
 
   @override
   void initState() {
@@ -100,10 +101,20 @@ State<FourBoard> {
 
   @override
   Widget build(BuildContext context) {
+    RouteSettings settings = ModalRoute.of(context).settings;
+
+    data = settings.arguments;
+
+    if (data != null) {
+      setState(() {
+        buttonCollection = data;
+      });
+    }
+    
     return Scaffold(
       backgroundColor: Color(0xFF293241),
       appBar: SwiftAppBar('Four Choices'),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(buttonCollection: buttonCollection),
       floatingActionButton: SwiftBoomMenu(),
       body: Padding(
         padding: EdgeInsets.only(

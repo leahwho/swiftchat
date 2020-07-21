@@ -3,8 +3,7 @@ import 'choice_screen.dart';
 import 'search.dart';
 import 'data.dart';
 
-class HorizButton extends StatelessWidget {
-  
+class HorizButton extends StatefulWidget {
   HorizButton({
     this.id,
     this.imgUrl,
@@ -14,15 +13,82 @@ class HorizButton extends StatelessWidget {
     this.onClearClick,
   });
 
-  final int id;
-  final String imgUrl;
-  final String userQuery;
-  final bool displayToggle;
-  final Function searchResults;
-  final Function onClearClick;
+  int id;
+  String imgUrl;
+  String userQuery;
+  bool displayToggle;
+  Function searchResults;
+  Function onClearClick;
 
   @override
+  _HorizButtonState createState() => _HorizButtonState();
+}
+
+class _HorizButtonState extends State<HorizButton> {
+  String value;
+  @override
   Widget build(BuildContext context) {
+    Dialog editTextDialog = Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0)), //this right here
+      child: Container(
+        decoration: BoxDecoration(
+            color: Color(0xFFcfdbd5),
+            borderRadius: BorderRadius.circular(10.0)),
+        height: 200.0,
+        width: 300.0,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(15.0),
+              child: TextField(
+                onChanged: (text) {
+                  value = text;
+                },
+                autofocus: true,
+                decoration: InputDecoration(
+                  filled: true,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xFF293241),
+                    ),
+                  ),
+                  border: OutlineInputBorder(),
+                  fillColor: Color(0xFFe8eddf),
+                  hintText: 'Button Text',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Material(
+                color: Color(0xFF293241),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30.0),
+                ),
+                child: MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      widget.userQuery = value;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Update Button Text',
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -44,24 +110,33 @@ class HorizButton extends StatelessWidget {
                           onTap: () async {
                             print('Image was clicked!');
                             // here we send the data to the next page
-                            Data data =
-                                new Data(imgUrl: imgUrl, userQuery: userQuery);
+                            Data data = new Data(
+                                imgUrl: widget.imgUrl,
+                                userQuery: widget.userQuery);
                             Navigator.pushNamed(context, ChoiceScreen.id,
                                 arguments: data);
                           },
-                          child: displayToggle
+                          child: widget.displayToggle
                               ? Container(
                                   width: 225,
                                   margin: EdgeInsets.only(right: 20),
-                                  child: Image.network(imgUrl),
+                                  child: Image.network(widget.imgUrl),
                                 )
                               : Container(),
                         ),
                       ),
-                      displayToggle
-                          ? Text(
-                              userQuery,
-                              style: TextStyle(fontSize: 20.0),
+                      widget.displayToggle
+                          ? GestureDetector(
+                              onTap: () async {
+                                await showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        editTextDialog);
+                              },
+                              child: Text(
+                                widget.userQuery,
+                                style: TextStyle(fontSize: 20.0),
+                              ),
                             )
                           : Text(''),
                     ],
@@ -73,8 +148,7 @@ class HorizButton extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(Icons.clear),
                   onPressed: () {
-                    print('Clear was pressed!');
-                    this.onClearClick(id);
+                    this.widget.onClearClick(widget.id);
                   },
                 ),
               ),
@@ -83,10 +157,9 @@ class HorizButton extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(Icons.search),
                   onPressed: () async {
-                    print('search was pressed');
                     var searchResults =
                         await Navigator.pushNamed(context, SwiftSearch.id);
-                    this.searchResults(searchResults, id);
+                    this.widget.searchResults(searchResults, widget.id);
                   },
                 ),
               ),

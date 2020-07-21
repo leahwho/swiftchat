@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'package:http/http.dart' as http; // this names the import http
 
 import 'dart:convert';
@@ -30,6 +31,8 @@ class _SwiftSearchState extends State<SwiftSearch> {
       data = json.decode(response.body);
     });
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -98,12 +101,7 @@ class _SwiftSearchState extends State<SwiftSearch> {
                         return Card(
                           child: InkWell(
                             onTap: () {
-                              // Navigator.of(context).pop();
-                              // Navigator.of(context).push(
-                              //   MaterialPageRoute(builder: (context) {
-                              //     returnTwoBoard(url & query)
-                              //   } ,)
-                              // )
+                              
                               Navigator.pop(
                                 context,
                                 {
@@ -113,8 +111,10 @@ class _SwiftSearchState extends State<SwiftSearch> {
                                 },
                               );
                             },
-                            child: Image.network(
-                                '${data['value'][index]['thumbnailUrl']}'),
+                            child: FadeInImage.memoryNetwork(
+                              placeholder: kTransparentImage,
+                              image: data['value'][index]['thumbnailUrl']
+                            ),
                           ),
                         );
                       },
