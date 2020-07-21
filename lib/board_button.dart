@@ -27,7 +27,6 @@ class BoardButton extends StatefulWidget {
 
 class _BoardButtonState extends State<BoardButton> {
   String value;
-  bool isPlaying = false;
   final FlutterTts _flutterTts = FlutterTts();
 
   @override
