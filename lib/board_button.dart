@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'choice_screen.dart';
 import 'search.dart';
 import 'data.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class BoardButton extends StatefulWidget {
   BoardButton({
@@ -26,8 +27,15 @@ class BoardButton extends StatefulWidget {
 
 class _BoardButtonState extends State<BoardButton> {
   String value;
+  bool isPlaying = false;
+  final FlutterTts _flutterTts = FlutterTts();
+
   @override
   Widget build(BuildContext context) {
+    Future _speak(String text) async {
+      await _flutterTts.speak(text);
+    }
+
     Dialog editTextDialog = Dialog(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0)), //this right here
@@ -105,6 +113,7 @@ class _BoardButtonState extends State<BoardButton> {
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                     child: GestureDetector(
                       onTap: () {
+                        _speak(widget.userQuery);
                         Data data = new Data(
                             imgUrl: widget.imgUrl, userQuery: widget.userQuery);
                         Navigator.pushNamed(context, ChoiceScreen.id,
