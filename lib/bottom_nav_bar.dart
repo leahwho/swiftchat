@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'data.dart';
 import 'home_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -29,10 +28,29 @@ class _BottomNavBarState extends State<BottomNavBar> {
   }
 
   void saveBoard() {
-    firestoreInstance.collection("boards").add(
-        {"name": boardName, "cards": widget.buttonCollection, "user": loggedInUser.email}).then((value) {
-      print(value.documentID);
-    });
+    try {
+      firestoreInstance.collection("boards").add({
+        "name": boardName,
+        "cards": widget.buttonCollection,
+        "user": loggedInUser.email
+      }).then((value) {
+        print('Successfully saved with this document ID: ${value.documentID}');
+        Scaffold.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Color(0xFFe8eddf),
+            content: Text(
+              'Successfully saved your board!',
+              style: TextStyle(
+                fontSize: 15.0,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        );
+      });
+    } catch (error) {
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text(error)));
+    }
   }
 
   void getCurrentUser() async {
@@ -129,15 +147,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
               Navigator.pushNamed(context, HomeScreen.id);
             },
           ),
-          userLoggedIn ? IconButton(
-            icon: Icon(Icons.save),
-            color: Color(0xFFe8eddf),
-            onPressed: () async {
-              await showDialog(
-                  context: context,
-                  builder: (BuildContext context) => saveDialog);
-            },
-          ) : SizedBox(width: 0.0,),
+          userLoggedIn
+              ? IconButton(
+                  icon: Icon(Icons.save),
+                  color: Color(0xFFe8eddf),
+                  onPressed: () async {
+                    await showDialog(
+                        context: context,
+                        builder: (BuildContext context) => saveDialog);
+                  },
+                )
+              : SizedBox(
+                  width: 0.0,
+                ),
         ],
       ),
     );
