@@ -15,9 +15,6 @@ class SwiftBoomMenu extends StatelessWidget {
         size: 30.0,
         color: Color(0xFFcfdbd5),
       ),
-      //child: Icon(Icons.add),
-      // onOpen: () => print('OPENING DIAL'),
-      // onClose: () => print('DIAL CLOSED'),
       scrollVisible: true,
       overlayColor: Colors.black,
       overlayOpacity: 0.7,
@@ -67,7 +64,6 @@ class SwiftBoomMenu extends StatelessWidget {
             Navigator.pushNamed(context, FourBoard.id);
           },
         ),
-        
       ],
     );
   }
