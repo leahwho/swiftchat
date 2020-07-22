@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:swift_chat/bottom_nav_bar.dart';
 
 // screens & components
 import 'home_button.dart';
@@ -58,9 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: SwiftAppBar('SwiftChat'),
-      // bottomNavigationBar: BottomNavBar(),
-
+      
       body: Container(
         width: double.infinity,
         color: Color(0xFF293241),
