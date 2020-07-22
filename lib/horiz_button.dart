@@ -14,12 +14,12 @@ class HorizButton extends StatefulWidget {
     this.onClearClick,
   });
 
-  int id;
-  String imgUrl;
+  final int id;
+  final String imgUrl;
   String userQuery;
-  bool displayToggle;
-  Function searchResults;
-  Function onClearClick;
+  final bool displayToggle;
+  final Function searchResults;
+  final Function onClearClick;
 
   @override
   _HorizButtonState createState() => _HorizButtonState();
