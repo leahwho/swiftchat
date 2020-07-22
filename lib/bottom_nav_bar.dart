@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:swift_chat/about.dart';
+import 'package:swift_chat/signin_screen.dart';
 
 import 'home_screen.dart';
 
@@ -134,8 +136,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
     return BottomAppBar(
       color: Color(0xFF293241),
-      // shape: CircularNotchedRectangle(),
-      // notchMargin: 5.0,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,6 +147,18 @@ class _BottomNavBarState extends State<BottomNavBar> {
               Navigator.pushNamed(context, HomeScreen.id);
             },
           ),
+          IconButton(
+            icon: Icon(Icons.info_outline),
+            color: Color(0xFFe8eddf),
+            onPressed: () {
+              Navigator.pushNamed(context, AboutScreen.id);
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.info_outline),
+            color: Color(0xFF293241),
+            onPressed: () {},
+          ),
           userLoggedIn
               ? IconButton(
                   icon: Icon(Icons.save),
@@ -157,8 +169,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
                         builder: (BuildContext context) => saveDialog);
                   },
                 )
-              : SizedBox(
-                  width: 0.0,
+              : IconButton(
+                  icon: Icon(Icons.portrait),
+                  color: Color(0xFFe8eddf),
+                  onPressed: () {
+                    Navigator.pushNamed(context, SigninScreen.id);
+                  },
                 ),
         ],
       ),
