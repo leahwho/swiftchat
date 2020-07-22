@@ -12,21 +12,23 @@ class BoardButton extends StatefulWidget {
     this.displayToggle,
     this.searchResults,
     this.onClearClick,
+    this.textUpdate,
   });
 
-  int id;
-  String imgUrl;
-  bool displayToggle;
-  Function searchResults;
-  Function onClearClick;
-  String userQuery;
+  final int id;
+  final String imgUrl;
+  final bool displayToggle;
+  final Function searchResults;
+  final Function onClearClick;
+  final Function textUpdate;
+  final String userQuery;
 
   @override
   _BoardButtonState createState() => _BoardButtonState();
 }
 
 class _BoardButtonState extends State<BoardButton> {
-  String value;
+  String newText;
   final FlutterTts _flutterTts = FlutterTts();
 
   @override
@@ -51,7 +53,7 @@ class _BoardButtonState extends State<BoardButton> {
               padding: EdgeInsets.all(15.0),
               child: TextField(
                 onChanged: (text) {
-                  value = text;
+                  newText = text;
                 },
                 autofocus: true,
                 decoration: InputDecoration(
@@ -76,9 +78,7 @@ class _BoardButtonState extends State<BoardButton> {
                 ),
                 child: MaterialButton(
                   onPressed: () {
-                    setState(() {
-                      widget.userQuery = value;
-                    });
+                    widget.textUpdate(newText, widget.id);
                     Navigator.of(context).pop();
                   },
                   child: Padding(

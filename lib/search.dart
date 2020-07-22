@@ -32,8 +32,6 @@ class _SwiftSearchState extends State<SwiftSearch> {
     });
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

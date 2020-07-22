@@ -90,6 +90,26 @@ State<FourBoard> {
     });
   }
 
+  void onTextUpdateCallback(userQuery, id) {
+    List newButtons = [];
+
+    if (userQuery == null) {
+      print('your query is null! ugh! better luck next time');
+    } else {
+      for (var button in buttonCollection) {
+        if (button['id'] == id) {
+          button['userQuery'] = userQuery;
+          newButtons.add(button);
+        } else {
+          newButtons.add(button);
+        }
+      }
+    }
+    setState(() {
+      buttonCollection = newButtons;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     RouteSettings settings = ModalRoute.of(context).settings;
@@ -121,6 +141,7 @@ State<FourBoard> {
                 displayToggle: button['displayToggle'],
                 searchResults: searchResultsCallback,
                 onClearClick: clearClick,
+                textUpdate: onTextUpdateCallback,
               )
           ],
         ),

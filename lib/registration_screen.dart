@@ -144,7 +144,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         });
                       } catch (error) {
                         print(error);
-                        //TODO: Save and put into a widget!
                       }
                     },
                     minWidth: 200.0,

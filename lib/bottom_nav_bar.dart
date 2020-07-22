@@ -1,23 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:swift_chat/about.dart';
+import 'package:swift_chat/signin_screen.dart';
 
-import 'data.dart';
 import 'home_screen.dart';
 
-class BottomNavBar extends StatelessWidget {
+class BottomNavBar extends StatefulWidget {
   BottomNavBar({this.buttonCollection});
 
   final List buttonCollection;
+
+  @override
+  _BottomNavBarState createState() => _BottomNavBarState();
+}
+
+class _BottomNavBarState extends State<BottomNavBar> {
   String boardName;
+  FirebaseUser loggedInUser;
+  bool userLoggedIn = false;
   final firestoreInstance = Firestore.instance;
+  final _auth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    getCurrentUser();
+    super.initState();
+  }
 
   void saveBoard() {
-    firestoreInstance
-        .collection("boards")
-        .add({"name": boardName, "cards": buttonCollection}).then((value) {
-      print(value.documentID);
-    });
+    try {
+      firestoreInstance.collection("boards").add({
+        "name": boardName,
+        "cards": widget.buttonCollection,
+        "user": loggedInUser.email
+      }).then((value) {
+        print('Successfully saved with this document ID: ${value.documentID}');
+        Scaffold.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Color(0xFFe8eddf),
+            content: Text(
+              'Successfully saved your board!',
+              style: TextStyle(
+                fontSize: 15.0,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        );
+      });
+    } catch (error) {
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text(error)));
+    }
+  }
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      // then you can display saved boards?
+      if (user != null) {
+        loggedInUser = user;
+        setState(() {
+          userLoggedIn = true;
+        });
+        print('${loggedInUser.email} is logged in');
+        return;
+      }
+    } catch (error) {
+      print(error);
+    }
+    print('there is no user logged in');
   }
 
   @override
@@ -83,8 +136,6 @@ class BottomNavBar extends StatelessWidget {
 
     return BottomAppBar(
       color: Color(0xFF293241),
-      // shape: CircularNotchedRectangle(),
-      // notchMargin: 5.0,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,17 +148,36 @@ class BottomNavBar extends StatelessWidget {
             },
           ),
           IconButton(
-            icon: Icon(Icons.save),
+            icon: Icon(Icons.info_outline),
             color: Color(0xFFe8eddf),
-            onPressed: () async {
-              await showDialog(
-                  context: context,
-                  builder: (BuildContext context) => saveDialog);
+            onPressed: () {
+              Navigator.pushNamed(context, AboutScreen.id);
             },
           ),
+          IconButton(
+            icon: Icon(Icons.info_outline),
+            color: Color(0xFF293241),
+            onPressed: () {},
+          ),
+          userLoggedIn
+              ? IconButton(
+                  icon: Icon(Icons.save),
+                  color: Color(0xFFe8eddf),
+                  onPressed: () async {
+                    await showDialog(
+                        context: context,
+                        builder: (BuildContext context) => saveDialog);
+                  },
+                )
+              : IconButton(
+                  icon: Icon(Icons.portrait),
+                  color: Color(0xFFe8eddf),
+                  onPressed: () {
+                    Navigator.pushNamed(context, SigninScreen.id);
+                  },
+                ),
         ],
       ),
     );
   }
 }
-
