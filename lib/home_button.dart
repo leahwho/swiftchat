@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HomeButton extends StatelessWidget {
-  String route;
-  String buttonText;
-  Color color;
+  final String route;
+  final String buttonText;
+  final Color color;
 
   HomeButton({
     this.buttonText,
