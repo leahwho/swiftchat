@@ -12,21 +12,23 @@ class HorizButton extends StatefulWidget {
     this.displayToggle,
     this.searchResults,
     this.onClearClick,
+    this.textUpdate,
   });
 
   final int id;
   final String imgUrl;
-  String userQuery;
+  final String userQuery;
   final bool displayToggle;
   final Function searchResults;
   final Function onClearClick;
+  final Function textUpdate;
 
   @override
   _HorizButtonState createState() => _HorizButtonState();
 }
 
 class _HorizButtonState extends State<HorizButton> {
-  String value;
+  String newText;
   final FlutterTts _flutterTts = FlutterTts();
 
   @override
@@ -51,7 +53,7 @@ class _HorizButtonState extends State<HorizButton> {
               padding: EdgeInsets.all(15.0),
               child: TextField(
                 onChanged: (text) {
-                  value = text;
+                  newText = text;
                 },
                 autofocus: true,
                 decoration: InputDecoration(
@@ -76,9 +78,7 @@ class _HorizButtonState extends State<HorizButton> {
                 ),
                 child: MaterialButton(
                   onPressed: () {
-                    setState(() {
-                      widget.userQuery = value;
-                    });
+                    widget.textUpdate(newText, widget.id);
                     Navigator.of(context).pop();
                   },
                   child: Padding(

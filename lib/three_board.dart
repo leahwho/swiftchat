@@ -3,7 +3,6 @@ import 'package:swift_chat/app_bar.dart';
 import 'package:swift_chat/boom_menu.dart';
 import 'package:swift_chat/horiz_button.dart';
 import 'bottom_nav_bar.dart';
-import 'board_button.dart';
 import 'boom_menu.dart';
 import 'horiz_button.dart';
 
@@ -89,6 +88,26 @@ void clearClick(id) {
     });
   }
 
+  void onTextUpdateCallback(userQuery, id) {
+    List newButtons = [];
+
+    if (userQuery == null) {
+      print('your query is null! ugh! better luck next time');
+    } else {
+      for (var button in buttonCollection) {
+        if (button['id'] == id) {
+          button['userQuery'] = userQuery;
+          newButtons.add(button);
+        } else {
+          newButtons.add(button);
+        }
+      }
+    }
+    setState(() {
+      buttonCollection = newButtons;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     RouteSettings settings = ModalRoute.of(context).settings;
@@ -118,6 +137,7 @@ void clearClick(id) {
                 displayToggle: button['displayToggle'],
                 searchResults: searchResultsCallback,
                 onClearClick: clearClick,
+                textUpdate: onTextUpdateCallback,
               )
           ],
         ),
