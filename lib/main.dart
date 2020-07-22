@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:swift_chat/about.dart';
 import 'package:swift_chat/login_screen.dart';
 import 'package:swift_chat/search.dart';
+import 'package:swift_chat/signin_screen.dart';
 
 import 'home_screen.dart';
 import 'registration_screen.dart';
@@ -10,6 +12,7 @@ import 'three_board.dart';
 import 'four_board.dart';
 import 'choice_screen.dart';
 import 'saved_boards.dart';
+import 'about.dart';
 
 void main() {
   runApp(SwiftChat());
@@ -31,6 +34,8 @@ class SwiftChat extends StatelessWidget {
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
         SavedBoards.id: (context) => SavedBoards(),
+        AboutScreen.id: (context) => AboutScreen(),
+        SigninScreen.id: (context) => SigninScreen(),
       },
     );
   }
