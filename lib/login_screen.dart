@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'home_screen.dart';
@@ -16,25 +15,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
-  GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: [
-      'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
-    ],
-  );
 
   bool showSpinner = false;
   String email;
   String password;
-
-  Future<void> _handleSignIn() async {
-    try {
-      await _googleSignIn.signIn();
-      print('success!');
-    } catch (error) {
-      print(error);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -172,13 +156,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              // Padding(
-              //     padding: EdgeInsets.symmetric(vertical: 16.0),
-              //     child: RaisedButton(
-              //       onPressed: () {
-              //         _handleSignIn();
-              //       },
-              //     ))
             ],
           ),
         ),
