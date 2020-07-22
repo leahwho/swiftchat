@@ -5,7 +5,6 @@ import 'board_button.dart';
 import 'bottom_nav_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 class TwoBoard extends StatefulWidget {
   static String id = 'two_board';
 
@@ -90,6 +89,26 @@ class _TwoBoardState extends State<TwoBoard> {
     });
   }
 
+  void onTextUpdateCallback(userQuery, id) {
+    List newButtons = [];
+
+    if (userQuery == null) {
+      print('your query is null! ugh! better luck next time');
+    } else {
+      for (var button in buttonCollection) {
+        if (button['id'] == id) {
+          button['userQuery'] = userQuery;
+          newButtons.add(button);
+        } else {
+          newButtons.add(button);
+        }
+      }
+    }
+    setState(() {
+      buttonCollection = newButtons;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     RouteSettings settings = ModalRoute.of(context).settings;
@@ -104,8 +123,7 @@ class _TwoBoardState extends State<TwoBoard> {
     return Scaffold(
       backgroundColor: Color(0xFF293241),
       appBar: SwiftAppBar('Two Choices'),
-      bottomNavigationBar: BottomNavBar(
-        buttonCollection: buttonCollection),
+      bottomNavigationBar: BottomNavBar(buttonCollection: buttonCollection),
       floatingActionButton: SwiftBoomMenu(),
       body: Padding(
         padding: EdgeInsets.only(
@@ -121,6 +139,7 @@ class _TwoBoardState extends State<TwoBoard> {
                 displayToggle: button['displayToggle'],
                 searchResults: searchResultsCallback,
                 onClearClick: clearClick,
+                textUpdate: onTextUpdateCallback,
               )
           ],
         ),
