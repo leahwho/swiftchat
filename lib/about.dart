@@ -27,7 +27,7 @@ class AboutScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    right: 10.0,
+                    right: 5.0,
                   ),
                   child: Text(
                     'SwiftChat',
@@ -44,19 +44,46 @@ class AboutScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
-              vertical: 10.0,
+              vertical: 5.0,
               horizontal: 20.0,
             ),
             child: Card(
               color: Color(0xFFcfdbd5),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'SwiftChat was created by me (Leah Hughes) as my final capstone project for Ada Developers Academy.  It is inspired by my background as a special education teacher working with students with severe disabilities.  Before joining Ada, I always wanted this app so I could quickly and easily make communication boards to use with my nonverbal students.  SwiftChat is intended to be used by teachers of and families with students that are visual communicators.',
-                  style: TextStyle(
-                    fontSize: 15.0,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        CircleAvatar(
+                          radius: 30.0,
+                          backgroundImage: AssetImage('images/flutterlogo.png'),
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 30.0,
+                          backgroundImage:
+                              AssetImage('images/firebaselogo.png'),
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 30.0,
+                          backgroundImage: AssetImage('images/circlebing.png'),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'SwiftChat was created by me, Leah Hughes, as my final capstone project for Ada Developers Academy.  It is inspired by my background as a special education teacher working with students with severe disabilities.  Before joining Ada, I always wanted this app so I could quickly and easily make communication boards to use with my nonverbal students.  SwiftChat is intended to be used by teachers of and families with students that are visual communicators.  This project was built using Flutter, Firebase, and the Bing Image Search API.',
+                      style: TextStyle(
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -76,16 +103,16 @@ class AboutScreen extends StatelessWidget {
                       children: <Widget>[
                         CircleAvatar(
                           radius: 30.0,
-                          backgroundImage: AssetImage('images/grabbers.jpg'),
+                          backgroundImage: AssetImage('images/colosseum.png'),
                         ),
                         CircleAvatar(
                           radius: 30.0,
-                          backgroundImage: AssetImage('images/grabbers.jpg'),
+                          backgroundImage: AssetImage('images/dinograbber.jpg'),
                         ),
                         CircleAvatar(
+                          backgroundColor: Colors.white,
                           radius: 30.0,
-                          backgroundImage:
-                              NetworkImage('https://i.imgur.com/AQR96do.jpg'),
+                          backgroundImage: AssetImage('images/bluesaw.png'),
                         ),
                       ],
                     ),
@@ -105,7 +132,7 @@ class AboutScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
-              vertical: 10.0,
+              vertical: 5.0,
               horizontal: 20.0,
             ),
             child: Card(
@@ -134,6 +161,40 @@ class AboutScreen extends StatelessWidget {
                             child: Container(
                               width: 150,
                               child: Image.asset('images/linkedin.png'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 5.0,
+              horizontal: 20.0,
+            ),
+            child: Card(
+              color: Color(0xFFcfdbd5),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () => launch(
+                                'https://adadevelopersacademy.org/'),
+                            child: Container(
+                              width: 150,
+                              child: Image.asset('images/ada_horiz_logo.png'),
                             ),
                           ),
                         ],
