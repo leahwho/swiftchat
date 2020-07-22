@@ -5,6 +5,7 @@ import 'board_button.dart';
 import 'bottom_nav_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 class TwoBoard extends StatefulWidget {
   static String id = 'two_board';
 
@@ -106,7 +107,6 @@ class _TwoBoardState extends State<TwoBoard> {
       bottomNavigationBar: BottomNavBar(
         buttonCollection: buttonCollection),
       floatingActionButton: SwiftBoomMenu(),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Padding(
         padding: EdgeInsets.only(
           bottom: 75.0,
