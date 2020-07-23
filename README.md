@@ -1,3 +1,5 @@
+# Here's the README!  I'll tell you all about this project ASAP!
+
 # swift_chat
 
 A new Flutter project.
