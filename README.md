@@ -34,4 +34,15 @@ The intended users are teachers or family members of people who use assistive te
 - Icons & Logo from [Flaticon](https://www.flaticon.com/)
 
 # Demo
+## First Choice
 <img src="/images/first_choice.gif" width="250"/>
+
+## Second Choice
+<img src="/images/second_choice.gif" width="250"/>
+
+## Choice Screen
+<img src="/images/choice_screen.gif" width="250"/>
+
+## Saving Board
+<img src="/images/saving_board.gif" width="250"/>
+
