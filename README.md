@@ -1,7 +1,7 @@
 # SwiftChat
 
 ## Description 
-SwiftChat is a quick communication solution for parents and teachers of visual communicators.  It is a mobile app that acts as a supplement to higher-tech assistive technology solutions used by non-verbal/visual communicators (e.g. people with autism or other developmental disabilities).  I created this for my final capstone project at Ada Developer’s Academy.  Users can search for photos to add to a 2-4 picture communication board, hear text spoken when an image is selected, and edit and save their boards for later use.
+SwiftChat is a quick communication solution for parents and teachers of visual communicators.  It is a mobile app that acts as a supplement to higher-tech assistive technology solutions used by non-verbal/visual communicators (e.g. people with autism or other developmental disabilities).  I created this for my final capstone project at [Ada Developer’s Academy](https://adadevelopersacademy.org/).  Users can search for photos to add to a 2-4 picture communication board, hear text spoken when an image is selected, and edit and save their boards for later use.
 
 ## Problem Statement
 While assistive technology is incredible, it is very time-consuming to program.  Teachers and families of people with severe disabilities do not often have the time that is required to customize technology to suit an AAC communicator’s needs, communication devices often go missing or are not immediately accessible when a need arises.  Users need access to a fast and efficient mobile app where they can quickly create visual communication boards on the go!
