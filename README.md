@@ -28,5 +28,10 @@ The intended users are teachers or family members of people who use assistive te
 - transparent_image:  ^1.0.0 [https://pub.dev/packages/transparent_image](https://pub.dev/packages/transparent_image)
 - url_launcher:  ^5.5.0 [https://pub.dev/packages/url_launcher](https://pub.dev/packages/url_launcher)
 
-## Demo
+## Resources
+- The Complete Flutter Development Bootcamp Using Dart:  https://www.appbrewery.co/p/flutter-development-bootcamp-with-dart
+- Shoutouts to [r/FlutterDev] (https://www.reddit.com/r/FlutterDev/) & every person who's ever posted anything about Flutter here on Stack Overflow
+- Icons & Logo from [Flaticon] (https://www.flaticon.com/)
+
+# Demo
 Coming Soon!
