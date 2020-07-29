@@ -29,4 +29,4 @@ transparent_image:  ^1.0.0 [https://pub.dev/packages/transparent_image](https://
 url_launcher:  ^5.5.0 [https://pub.dev/packages/url_launcher](https://pub.dev/packages/url_launcher)
 
 ## Demo
-![Alt Text](https://j.gifs.com/p85wAX.gif)
+Coming Soon!
