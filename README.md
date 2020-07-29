@@ -34,4 +34,4 @@ The intended users are teachers or family members of people who use assistive te
 - Icons & Logo from [Flaticon](https://www.flaticon.com/)
 
 # Demo
-Coming Soon!
+<img src="/images/first_choice.gif" width="250"/>
