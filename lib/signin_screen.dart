@@ -7,10 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 // screens & components
 import 'home_button.dart';
 import 'boom_menu.dart';
-import 'two_board.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
-import 'saved_boards.dart';
 
 class SigninScreen extends StatefulWidget {
   static String id = 'signin_screen';
