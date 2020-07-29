@@ -29,7 +29,7 @@ The intended users are teachers or family members of people who use assistive te
 - [url_launcher](https://pub.dev/packages/url_launcher):  ^5.5.0 
 
 ## Resources
-- The Complete Flutter Development Bootcamp Using Dart:  https://www.appbrewery.co/p/flutter-development-bootcamp-with-dart
+- [The Complete Flutter Development Bootcamp Using Dart](https://www.appbrewery.co/p/flutter-development-bootcamp-with-dart)
 - Shoutouts to [r/FlutterDev](https://www.reddit.com/r/FlutterDev/) & every person who's ever posted anything about Flutter here on Stack Overflow
 - Icons & Logo from [Flaticon](https://www.flaticon.com/)
 
