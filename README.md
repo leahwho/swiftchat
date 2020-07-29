@@ -27,3 +27,6 @@ modal_progress_hud:  ^0.1.3 [https://pub.dev/packages/modal_progress_hud](https:
 flutter_tts:  ^1.2.6 [https://pub.dev/packages/flutter_tts](https://pub.dev/packages/flutter_tts)
 transparent_image:  ^1.0.0 [https://pub.dev/packages/transparent_image](https://pub.dev/packages/transparent_image)
 url_launcher:  ^5.5.0 [https://pub.dev/packages/url_launcher](https://pub.dev/packages/url_launcher)
+
+## Demo
+![Alt Text](https://gifs.com/gif/first-search-p85wAX)
