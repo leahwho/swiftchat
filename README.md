@@ -10,11 +10,11 @@ While assistive technology is incredible, it is very time-consuming to program. 
 The intended users are teachers or family members of people who use assistive technology to facillitate communication, especially those who need visual support.
 
 ## Tech Stack
-- [Flutter](https://flutter.dev/](https://flutter.dev/)
-- [Dart](https://dart.dev/](https://dart.dev/)
-- [Firebase Cloud Firestore](https://firebase.google.com/docs/firestore](https://firebase.google.com/docs/firestore)
-- [Firebase User Authentication](https://firebase.google.com/docs/auth](https://firebase.google.com/docs/auth)
-- [Bing Image Search API](https://azure.microsoft.com/en-us/services/cognitive-services/bing-image-search-api/](https://azure.microsoft.com/en-us/services/cognitive-services/bing-image-search-api/)
+- [Flutter](https://flutter.dev/)
+- [Dart](https://dart.dev/)
+- [Firebase Cloud Firestore](https://firebase.google.com/docs/firestore)
+- [Firebase User Authentication](https://firebase.google.com/docs/auth)
+- [Bing Image Search API](https://azure.microsoft.com/en-us/services/cognitive-services/bing-image-search-api/)
 
 ## Packages
 - [http](https://pub.dev/packages/http):  ^0.12.1 
